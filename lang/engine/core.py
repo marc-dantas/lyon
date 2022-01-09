@@ -10,6 +10,22 @@ class Error:
         print(f'Error: {self._code}')
 
 
+class ErrorCode:
+
+    def __new__(cls, value: int) -> int:
+        return super().__new__(cls, value)
+
+    def __init__(self, value: int) -> None:
+        self._value = value
+    
+    @property
+    def code(self) -> int:
+        return self._value
+
+    def __repr__(self) -> int:
+        return self._value
+
+
 class CommandToken:
 
     def __init__(self, command: str, parameter: str = None) -> None:
@@ -83,9 +99,8 @@ class CommandInterpreter:
     def command(self) -> str:
         return self._command
 
-    def interpret_command(self) -> Command | int:
+    def interpret_command(self) -> Command | ErrorCode:
         cmd = (CommandToken(*self.format_cmd()).val).split(':')[0]
         if self.command_table.get(cmd):
             return self.command_table.get(cmd)
-        return 2
-
+        return ErrorCode(1)
