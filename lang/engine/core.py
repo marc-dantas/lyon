@@ -1,29 +1,5 @@
 from typing import Callable
-
-
-class Error:
-
-    def __init__(self, code: int = 0) -> None:
-        self._code = code
-
-    def throw(self) -> None:
-        print(f'Error: {self._code}')
-
-
-class ErrorCode:
-
-    def __new__(cls, value: int) -> int:
-        return super().__new__(cls, value)
-
-    def __init__(self, value: int) -> None:
-        self._value = value
-    
-    @property
-    def code(self) -> int:
-        return self._value
-
-    def __repr__(self) -> int:
-        return self._value
+from util import throw
 
 
 class CommandToken:
@@ -73,11 +49,14 @@ class CommandTable:
     def insert(self, command: Command) -> None:
         self._commands.append(command)
 
+    def exists(self, command: str) -> bool:
+        return any(cmd.name == command for cmd in self._commands)
+
     def get(self, name: str) -> Command | bool:
         for command in self._commands:
             if command.name == name:
                 return command
-        return False
+        return None
 
     def __repr__(self) -> str:
         return self._commands
@@ -90,7 +69,8 @@ class CommandInterpreter:
         self._command_table = command_table
     
     def format_cmd(self) -> tuple:
-        return tuple(i for i in self.command.split(' ', 1) if i)
+        format = tuple(i.strip() for i in self._command.split(' ', 1))
+        return tuple(i for i in format if i)
 
     def is_parameterized(self) -> bool:
         return len(self.format_cmd()) > 1
@@ -99,8 +79,9 @@ class CommandInterpreter:
     def command(self) -> str:
         return self._command
 
-    def interpret_command(self) -> Command | ErrorCode:
-        cmd = (CommandToken(*self.format_cmd()).val).split(':')[0]
-        if self.command_table.get(cmd):
-            return self.command_table.get(cmd)
-        return ErrorCode(1)
+    def run_command(self) -> object:
+        cmd = (CommandToken(*self.format_cmd()).val).split(':')
+        if self._command_table.exists(cmd[0]):
+            return self._command_table.get(cmd[0]).action(cmd[1])
+        throw(1)
+        return None
