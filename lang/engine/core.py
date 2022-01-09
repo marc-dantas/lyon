@@ -1,29 +1,32 @@
 from typing import Callable
 
 
-class Token:
-    
-    def __init__(self, type: object, value: object) -> None:
-        super().__init__()
-        self._type = type
-        self._value = value
+class Error:
+
+    def __init__(self, code: int = 0) -> None:
+        self._code = code
+
+    def throw(self) -> None:
+        print(f'Error: {self._code}')
+
+
+class CommandToken:
+
+    def __init__(self, command: str, parameter: str = None) -> None:
+        self._cmd = command
+        self._param = parameter
 
     @property
-    def type(self) -> object:
-        return self._type
-
-    @property
-    def value(self) -> object:
-        return self._value
+    def val(self) -> str:
+        return f'{self._cmd}:{self._param}'
 
     def __str__(self) -> str:
-        return f'{self.type}.{self.value}'
+        return f'{self._cmd}:{self._param}'
 
 
 class Command:
 
-    def __init__(self, name: str, action: Callable,
-                have_param: bool = False) -> None:
+    def __init__(self, name: str, action: Callable) -> None:
         self._name = name
         self._action = action
 
@@ -67,19 +70,22 @@ class CommandTable:
 class CommandInterpreter:
 
     def __init__(self, command: str, command_table: CommandTable) -> None:
-        self.__command = command
+        self._command = command
+        self._command_table = command_table
+    
+    def format_cmd(self) -> tuple:
+        return tuple(i for i in self.command.split(' ', 1) if i)
+
+    def is_parameterized(self) -> bool:
+        return len(self.format_cmd()) > 1
 
     @property
     def command(self) -> str:
-        return self.__command
+        return self._command
 
-    def tokenize(self) -> list:
-        # TODO: Implement tokenization
-        pass
+    def interpret_command(self) -> Command | int:
+        cmd = (CommandToken(*self.format_cmd()).val).split(':')[0]
+        if self.command_table.get(cmd):
+            return self.command_table.get(cmd)
+        return 2
 
-    def parse(self) -> list:
-        # TODO: Implement parsing
-        pass
-
-    def __call__(self, *args, **kwargs) -> None:
-        return self.parse(self.tokenize())
