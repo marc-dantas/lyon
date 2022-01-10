@@ -27,5 +27,5 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 <h3 id="load">Command: <code>load</code></h3>
 
-- Loads a variable space in the memory and stores the value in `IO` space in the memory.
+- Loads a variable space in the memory and stores the value in `SPACE` space in the memory.
 - Syntax: `load <name>`
