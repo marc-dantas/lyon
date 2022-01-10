@@ -1,5 +1,5 @@
 from typing import Callable
-from util import throw
+from engine.util import throw
 
 
 class CommandToken:
