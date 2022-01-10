@@ -1,15 +1,23 @@
 # import engine
 import shell
-from engine.core import *
-from engine.actions import *
+import engine.core
+import engine.actions
+
+# Constants
+TABLE = engine.core.CommandTable()
+TABLE.insert_commands(engine.actions.COMMANDS)
+PROCESSOR = engine.core.CommandProcessor()
+INTERPRETER = engine.core.CommandInterpreter(TABLE)
+
+
+def main() -> None:
+    shell.print_header(title='Lyon', subtitle='The command language')
+    shell.print_hint('Type "ext" to exit')
+    while True:
+        cmd = shell.get()
+        token = PROCESSOR.tokenize_command(cmd)
+        INTERPRETER.run_command(token)
 
 
 if __name__ == '__main__':
-    shell.print_header(title='Lyon', subtitle='The command language')
-    while True:
-        cmd = shell.get()
-        # FIXME: Temporary test
-        table = CommandTable()
-        insert_commands(table)
-        interpreter = CommandInterpreter(cmd, table)
-        interpreter.run_command()
+    main()

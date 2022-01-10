@@ -1,4 +1,5 @@
 interpolations = ['$NUM', '$SPACE']
+comments = ['#', ';']
 
 
 def filter_num(text: str, value: str) -> str:
@@ -12,7 +13,7 @@ def filter_num(text: str, value: str) -> str:
 
 
 def filter_space(text: str, value: str) -> str:
-    """Filter the "$IO" interpolation from a string
+    """Filter the "$SPACE" interpolation from a string
 
     Args:
         text (str): The text to filter

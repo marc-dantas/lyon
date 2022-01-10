@@ -1,5 +1,5 @@
 from typing import Callable
-from .util import throw
+from .util import throw, comments
 
 
 class CommandToken:
@@ -46,6 +46,10 @@ class CommandTable:
     def insert(self, command: Command) -> None:
         self._commands.append(command)
 
+    def insert_commands(self, commands: list[Command]) -> None:
+        for command in commands:
+            self.insert(command)
+
     def exists(self, name: str) -> bool:
         return self.get(name) is not None
 
@@ -59,23 +63,32 @@ class CommandTable:
         return self._commands
 
 
-class CommandInterpreter:
+class CommandProcessor:
 
-    def __init__(self, command: str, command_table: CommandTable) -> None:
-        self._command = command
-        self._command_table = command_table
-    
-    def format_cmd(self) -> tuple:
-        format = tuple(i.strip() for i in self._command.split(' ', 1))
+    @staticmethod
+    def format_cmd(command: str) -> tuple:
+        format = tuple(i.strip() for i in command.split(' ', 1))
         return tuple(i for i in format if i)
 
-    @property
-    def command(self) -> str:
-        return self._command
+    def tokenize_command(self, command: str) -> CommandToken:
+        return CommandToken(*CommandProcessor.format_cmd(command))
 
-    def run_command(self) -> object:
-        cmd = (CommandToken(*self.format_cmd()).val).split(':')
+
+class CommandInterpreter:
+
+    def __init__(self, command_table: CommandTable) -> None:
+        self._command_table = command_table
+
+    @property
+    def command_table(self) -> str:
+        return self._command_table
+
+    def run_command(self, token: CommandToken) -> object:
+        cmd = (token.val).split(':')
         if self._command_table.exists(cmd[0]):
             return self._command_table.get(cmd[0]).action(cmd[1])
-        throw(1)
-        return None
+        elif cmd[0][0] in comments:
+            return None
+        else:
+            throw(1)
+            return None
