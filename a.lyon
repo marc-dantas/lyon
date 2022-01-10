@@ -1,6 +1,0 @@
-; ate os comentario vai ser igual kk
-; variables
-var abc
-val 123
-load abc
-outln $SPACE
