@@ -1,5 +1,5 @@
 # Actions module for lyon
-from util import filter_io, filter_num
+from util import filter_space, filter_num
 from core import Command
 
 # Main command actions (functions)
@@ -7,13 +7,13 @@ from core import Command
 
 def out(val: str) -> None:
     val = filter_num(val, str(...))
-    val = filter_io(val, str(...))
+    val = filter_space(val, str(...))
     print(val, end='')
 
 
 def outln(val: str) -> None:
     val = filter_num(val, str(...))
-    val = filter_io(val, str(...))
+    val = filter_space(val, str(...))
     print(val)
 
 
@@ -22,11 +22,14 @@ def rdin(val: str) -> str:
 
 
 def clio(val: str) -> None:
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     print(val)
 
 
 def iowrt(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement iowrt
 
 
@@ -36,42 +39,50 @@ def ldio(val: str) -> None:
 
 
 def var(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement var
 
 
 def val(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement val
 
 
 def load(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement load
 
 
 def add(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement add
 
 
 def sub(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement sub
 
 
 def mul(val: str) -> None:
-    pass 
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...)) 
     # TODO: Implement mul
 
 
 def div(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement div
 
 
 def runfile(val: str) -> None:
-    pass
+    val = filter_num(val, str(...))
+    val = filter_space(val, str(...))
     # TODO: Implement runfile
 
 

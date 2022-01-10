@@ -44,7 +44,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 <hr>
 
 ### Memory
-- `IO`: The space in the memory where the input and general values is stored.
+- `SPACE`: The space in the memory where the input and general values is stored.
     + Representation: `$IO`
 <br><br>
 - `NUM`: The space in the memory where the numbers are stored.

@@ -27,5 +27,5 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 <h3 id="rdin">Command: <code>rdin</code></h3>
 
-- Reads a value from the console and stores it in `IO` space in the memory.
+- Reads a value from the console and stores it in `SPACE` space in the memory.
 - Syntax: `rdin`
