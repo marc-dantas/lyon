@@ -5,17 +5,17 @@ By [@marc-dantas](https://github.com/marc-dantas)
 <hr>
 
 ### Commands
-- `sum <number>` [here](#sum)
+- `add <number>` [here](#sum)
 - `sub <number>` [here](#sub)
 - `mul <number>` [here](#mul)
 - `div <number>` [here](#div)
 
 <hr>
 
-<h3 id="sum">Command: <code>sum</code></h3> 
+<h3 id="add">Command: <code>sum</code></h3> 
 
 - Sums a value to the `NUM` space in the memory.
-- Syntax: `sum <number>`
+- Syntax: `add <number>`
 
 <hr>
 
