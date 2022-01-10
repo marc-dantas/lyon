@@ -38,10 +38,6 @@ def iowrt(val: str) -> None:
     SPACE.set(val)
 
 
-def ldio(val: str) -> None:
-    print(SPACE.value)
-
-
 def var(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
@@ -101,7 +97,6 @@ COMMANDS = [
     Command(name='rdin', action=rdin),
     Command(name='clio', action=clio),
     Command(name='iowrt', action=iowrt),
-    Command(name='ldio', action=ldio),
     Command(name='var', action=var),
     Command(name='val', action=val),
     Command(name='load', action=load),

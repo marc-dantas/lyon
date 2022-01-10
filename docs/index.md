@@ -11,7 +11,6 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - IO Commands
     + `clio`
     + `iowrt <value>`
-    + `ldio`
 - Variable commands
     + `var <name>`
     + `val <value>`
@@ -39,13 +38,15 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - 1: Invalid command (Unknown Command Error)
 - 2: Invalid syntax (Syntax Error)
 - 3: Invalid argument (Name Error)
-- 4: Variable Error
+- 4: Variable Error or Variable not found
 
 <hr>
 
 ### Memory
-- `SPACE`: The space in the memory where the input and general values is stored.
-    + Representation: `$IO`
+- `$SPACE`: The space in the memory where the input and general values is stored.
+    + Representation: `$IO` -> example: `outln $SPACE` (prints the `$SPACE` value)
+    + NOTE: The default value is "None"
 <br><br>
-- `NUM`: The space in the memory where the numbers are stored.
-    + Representation: `$NUM`
+- `$NUM`: The space in the memory where the numbers are stored.
+    + Representation: `$NUM` -> example: `outln $NUM` (prints the `$NUM` value)
+    + NOTE: The default value is 0.
