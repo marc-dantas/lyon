@@ -1,6 +1,6 @@
 # Actions module for lyon
-from util import filter_space, filter_num
-from core import Command
+from .util import filter_space, filter_num
+from .core import Command
 
 # Main command actions (functions)
 
@@ -87,8 +87,7 @@ def runfile(val: str) -> None:
 
 
 def ext(val: str) -> None:
-    pass
-    # TODO: Implement ext
+    exit()
 
 
 # All <Command> objects
@@ -109,3 +108,8 @@ COMMANDS = {
     'runfile': Command(name='runfile', action=runfile),
     'ext': Command(name='ext', action=ext)
 }
+
+
+def insert_commands(table) -> None:
+    for command in COMMANDS.values():
+        table.insert(command)

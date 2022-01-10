@@ -1,5 +1,5 @@
 from typing import Callable
-from util import throw
+from .util import throw
 
 
 class CommandToken:
@@ -30,9 +30,6 @@ class Command:
     def action(self) -> Callable:
         return self._action
 
-    def __str__(self) -> str:
-        return self._name
-
     def __call__(self, argument) -> None:
         self.action(argument)
 
@@ -49,11 +46,11 @@ class CommandTable:
     def insert(self, command: Command) -> None:
         self._commands.append(command)
 
-    def exists(self, command: str) -> bool:
-        return any(cmd.name == command for cmd in self._commands)
+    def exists(self, name: str) -> bool:
+        return self.get(name) is not None
 
-    def get(self, name: str) -> Command | bool:
-        for command in self._commands:
+    def get(self, name: str) -> Command:
+        for command in self.commands:
             if command.name == name:
                 return command
         return None
@@ -71,9 +68,6 @@ class CommandInterpreter:
     def format_cmd(self) -> tuple:
         format = tuple(i.strip() for i in self._command.split(' ', 1))
         return tuple(i for i in format if i)
-
-    def is_parameterized(self) -> bool:
-        return len(self.format_cmd()) > 1
 
     @property
     def command(self) -> str:
