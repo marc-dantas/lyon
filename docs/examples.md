@@ -34,9 +34,9 @@ rdin
 val $SPACE
 var sum
 ldvar n1
-add $SPACE
+sum $SPACE
 ldvar n2
-add $SPACE
+sum $SPACE
 val $NUM
 ldvar sum
 outln The sum is $SPACE

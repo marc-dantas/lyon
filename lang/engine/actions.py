@@ -61,7 +61,7 @@ def ldvar(val: str) -> None:
     SPACE.set(VAR.get(val))
 
 
-def add(val: str) -> None:
+def sum(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
     NUM.add(val)
@@ -108,7 +108,7 @@ COMMANDS = [
     Command(name='var', action=var),
     Command(name='val', action=val),
     Command(name='ldvar', action=ldvar),
-    Command(name='add', action=add),
+    Command(name='sum', action=sum),
     Command(name='sub', action=sub),
     Command(name='mul', action=mul),
     Command(name='div', action=div),

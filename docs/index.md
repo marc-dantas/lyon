@@ -16,7 +16,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
     + `val <value>`
     + `ldvar <name>`
 - Math commands
-    + `add <number>`
+    + `sum <number>`
     + `sub <number>`
     + `mul <number>`
     + `div <number>`
