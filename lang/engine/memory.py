@@ -52,6 +52,9 @@ class Num:
     def div(self, val: float) -> None:
         self._num /= self.check_number(val)
 
+    def clear(self) -> None:
+        self._num = 0.0
+
     def __str__(self) -> str:
         return str(self._num)
 
@@ -74,6 +77,10 @@ class Var:
 
     def get(self, key: str) -> object:
         return self._var.get(key, "None")
+
+    def clear(self) -> None:
+        self._var = {}
+        self._last_var = ""
 
     def __str__(self) -> str:
         return str(self._var)
