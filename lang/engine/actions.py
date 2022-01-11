@@ -92,9 +92,6 @@ def runfile(val: str) -> None:
         TABLE.insert_commands(COMMANDS)
         for line in f:
             interpret(PROCESSOR, INTERPRETER, line)
-    SPACE.clear()
-    NUM.clear()
-    VAR.clear()
 
 
 def ext(val: str) -> None:
