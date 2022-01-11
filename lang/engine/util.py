@@ -2,6 +2,14 @@ interpolations = ['$NUM', '$SPACE']
 comments = ['#', ';']
 
 
+def interpret(processor, interpreter, command: str) -> bool:
+    if not command.strip():
+        return False
+    token = processor.tokenize_command(command)
+    interpreter.run_command(token)
+    return True
+
+
 def filter_num(text: str, value: str) -> str:
     """Filter the "$NUM" interpolation from a string
 
@@ -28,4 +36,4 @@ def throw(code: object) -> None:
     Args:
         code (object): The error code
     """
-    print(f'Error: {code}')
+    print(f'LyonERR: {code}')

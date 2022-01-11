@@ -1,12 +1,17 @@
 # Actions module for lyon
-from .util import filter_space, filter_num
-from .core import Command
+from .util import filter_space, filter_num, interpret
+from .core import Command, CommandProcessor, CommandInterpreter, CommandTable
 from .memory import Space, Num, Var
 
 # Memory
 SPACE = Space()
 NUM = Num()
 VAR = Var()
+
+# Command table, processing and interpreter
+PROCESSOR = CommandProcessor()
+TABLE = CommandTable()
+INTERPRETER = CommandInterpreter(TABLE)
 
 
 # Main command actions (functions)
@@ -83,7 +88,10 @@ def div(val: str) -> None:
 def runfile(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
-    # TODO: Implement runfile
+    with open(f'{val}') as f:
+        TABLE.insert_commands(COMMANDS)
+        for line in f:
+            interpret(PROCESSOR, INTERPRETER, line)
 
 
 def ext(val: str) -> None:
@@ -107,8 +115,3 @@ COMMANDS = [
     Command(name='runfile', action=runfile),
     Command(name='ext', action=ext)
 ]
-
-
-def insert_commands(table) -> None:
-    for command in COMMANDS.values():
-        table.insert(command)

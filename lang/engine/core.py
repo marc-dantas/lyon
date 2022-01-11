@@ -69,7 +69,7 @@ class CommandProcessor:
     def format_cmd(command: str) -> tuple:
         format = tuple(i.strip() for i in command.split(' ', 1))
         return tuple(i for i in format if i)
-
+        
     def tokenize_command(self, command: str) -> CommandToken:
         return CommandToken(*CommandProcessor.format_cmd(command))
 
