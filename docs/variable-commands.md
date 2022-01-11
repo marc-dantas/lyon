@@ -7,7 +7,7 @@ By [@marc-dantas](https://github.com/marc-dantas)
 ### Commands
 - `var <name>` [here](#var)
 - `val <value>` [here](#val)
-- `load <name>` [here](#load)
+- `ldvar <name>` [here](#ldvar)
 
 <hr>
 
@@ -25,7 +25,7 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 <hr>
 
-<h3 id="load">Command: <code>load</code></h3>
+<h3 id="ldvar">Command: <code>ldvar</code></h3>
 
 - Loads a variable space in the memory and stores the value in `SPACE` space in the memory.
-- Syntax: `load <name>`
+- Syntax: `ldvar <name>`

@@ -12,6 +12,7 @@ outln --- Welcome! ---
 outln What is your name?
 rdin
 val $SPACE
+ldvar name
 outln Hello, $SPACE!
 outln --- Bye! ---
 ```
@@ -32,12 +33,12 @@ outln Second number:
 rdin
 val $SPACE
 var sum
-load n1
+ldvar n1
 add $SPACE
-load n2
+ldvar n2
 add $SPACE
 val $NUM
-load sum
+ldvar sum
 outln The sum is $SPACE
 ```
 

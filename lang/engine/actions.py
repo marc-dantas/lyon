@@ -55,7 +55,7 @@ def val(val: str) -> None:
     VAR.set(val)
 
 
-def load(val: str) -> None:
+def ldvar(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
     SPACE.set(VAR.get(val))
@@ -110,7 +110,7 @@ COMMANDS = [
     Command(name='iowrt', action=iowrt),
     Command(name='var', action=var),
     Command(name='val', action=val),
-    Command(name='load', action=load),
+    Command(name='ldvar', action=ldvar),
     Command(name='add', action=add),
     Command(name='sub', action=sub),
     Command(name='mul', action=mul),

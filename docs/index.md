@@ -14,7 +14,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - Variable commands
     + `var <name>`
     + `val <value>`
-    + `load <name>`
+    + `ldvar <name>`
 - Math commands
     + `add <number>`
     + `sub <number>`
