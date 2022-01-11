@@ -36,4 +36,4 @@ def throw(code: object) -> None:
     Args:
         code (object): The error code
     """
-    print(f'LyonERR: {code}')
+    print(f'ERR {code}')

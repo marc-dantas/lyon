@@ -1,5 +1,6 @@
 from typing import Callable
 from .util import throw, comments
+from .errs import INVALID_COMMAND
 
 
 class CommandToken:
@@ -90,5 +91,5 @@ class CommandInterpreter:
         elif cmd[0][0] in comments:
             return None
         else:
-            throw(1)
+            throw(INVALID_COMMAND)
             return None

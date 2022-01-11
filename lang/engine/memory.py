@@ -1,4 +1,5 @@
 # Memory module for lyon.
+from .errs import INVALID_ARG, VAR_ERR
 from .util import throw
 
 
@@ -37,7 +38,7 @@ class Num:
     def check_number(self, val: object) -> float:
         if self.is_number(val):
             return float(val)
-        throw(3)
+        throw(INVALID_ARG)
         return 0.0
 
     def add(self, val: float) -> None:
@@ -73,7 +74,7 @@ class Var:
         if not self._last_var or self._last_var != "None":
             self._var[self._last_var] = value
         else:
-            throw(4)
+            throw(VAR_ERR)
 
     def get(self, key: str) -> object:
         return self._var.get(key, "None")
