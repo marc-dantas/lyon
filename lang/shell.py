@@ -1,12 +1,12 @@
 
 def print_header(title, subtitle=None) -> None:
-    print(title.center(40))
+    print(f" {title} ".center(80, '-'))
     if subtitle:
-        print(subtitle.center(40))
+        print(f" {subtitle} ".center(80, '-'))
 
 
 def print_hint(hint: str) -> None:
-    print(f"-> {hint}")
+    print(f"\t-> {hint}")
 
 
 def get() -> str:
