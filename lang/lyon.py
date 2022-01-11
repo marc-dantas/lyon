@@ -12,8 +12,9 @@ INTERPRETER = engine.core.CommandInterpreter(TABLE)
 
 
 def main() -> None:
-    shell.print_header(title='Lyon', subtitle='The command language')
+    shell.print_header(title='Lyon', subtitle='Interactive console')
     shell.print_hint('Type "ext" to exit')
+    shell.print_hint('Type "runfile <filename>" to run a file')
     while True:
         cmd = shell.get()
         res = engine.util.interpret(PROCESSOR, INTERPRETER, cmd)
