@@ -42,4 +42,29 @@ ldvar sum
 outln The sum is $SPACE
 ```
 
+<hr>
+
+<h3 id="outln">Example: Running files</h3>
+
+- main.lyon
+```
+outln From main.lyon!
+var a
+val the value from a
+ldvar a
+outln A = $SPACE
+runfile other.lyon
+```
+
+- other.lyon
+```
+outln From other.lyon
+var b
+val the value from b
+ldvar b
+outln B = $SPACE
+```
+
+<hr>
+
 > NOTE: Have fun with lyon!
