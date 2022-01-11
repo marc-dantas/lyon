@@ -42,9 +42,16 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 
 <hr>
 
+### Comments
+- Lyon defaults to two types of comment representation: `#` and `;`
+- Syntax for the hashtag: `# <some text>`
+- Syntax for the semicolon: `; <some text>`
+
+<hr>
+
 ### Memory
 - `$SPACE`: The space in the memory where the input and general values is stored.
-    + Representation: `$IO` -> example: `outln $SPACE` (prints the `$SPACE` value)
+    + Representation: `$SPACE` -> example: `outln $SPACE` (prints the `$SPACE` value)
     + NOTE: The default value is "None"
 <br><br>
 - `$NUM`: The space in the memory where the numbers are stored.
