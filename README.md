@@ -1,5 +1,6 @@
 # Lyon language
+By [@marc-dantas](https://github.com/marc-dantas).
 ## A simple command language made in Python!
 
-- Read the [DOCS](./docs/index.md)
-- By [@marc-dantas](https://github.com/marc-dantas)
+- Read the [documentation](./docs/index.md).
+- See some [examples](./docs/examples.md).
