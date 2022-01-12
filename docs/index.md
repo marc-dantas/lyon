@@ -36,7 +36,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 ### Error Codes
 - 0: Unknown error (Default Error)
 - 1: Invalid command (Unknown Command Error)
-- 2: Invalid syntax (Syntax Error)
+- 2: File Error
 - 3: Invalid argument (Name Error)
 - 4: Variable Error or Variable not found
 

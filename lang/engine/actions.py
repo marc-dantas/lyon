@@ -2,7 +2,7 @@
 from .util import filter_space, filter_num, interpret, throw
 from .core import Command, CommandProcessor, CommandInterpreter, CommandTable
 from .memory import Space, Num, Var
-from .errs import INVALID_ARG
+from .errs import FILE_ERR
 
 # Memory
 SPACE = Space()
@@ -94,8 +94,8 @@ def runfile(val: str) -> None:
             TABLE.insert_commands(COMMANDS)
             for line in f:
                 interpret(PROCESSOR, INTERPRETER, line)
-    except FileNotFoundError:
-        throw(INVALID_ARG)
+    except Exception:
+        throw(FILE_ERR)
 
 
 def ext(val: str) -> None:
