@@ -50,10 +50,10 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 <hr>
 
 ### Memory
-- `$SPACE`: The space in the memory where the input and general values is stored.
-    + Representation: `$SPACE` -> example: `outln $SPACE` (prints the `$SPACE` value)
+- `@SPACE`: The space in the memory where the input and general values is stored.
+    + Representation: `@SPACE` -> example: `outln @SPACE` (prints the `@SPACE` value)
     + NOTE: The default value is "None"
 <br><br>
-- `$NUM`: The space in the memory where the numbers are stored.
-    + Representation: `$NUM` -> example: `outln $NUM` (prints the `$NUM` value)
+- `@NUM`: The space in the memory where the numbers are stored.
+    + Representation: `@NUM` -> example: `outln @NUM` (prints the `@NUM` value)
     + NOTE: The default value is 0.
