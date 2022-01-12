@@ -57,3 +57,18 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - `@NUM`: The space in the memory where the numbers are stored.
     + Representation: `@NUM` -> example: `outln @NUM` (prints the `@NUM` value)
     + NOTE: The default value is 0.
+
+<hr>
+
+### How lyon interpret files, commands & folders...?
+lyon has a different way of interpreting files and folders, like folders being programs and files being functions. So you can use a manager (Like LyonManager) to create programs (folders) that contain various functions (files).
+
+<hr>
+
+### LyonManager
+LyonManager is a program that manages lyon programs (like a NPM).
+- Usage
+    + `$ [lyonmanager] <command> <args>`
+    + Commands
+        + `new <name> <version>` - Creates a new lyon program
+        + `run <program_path>` - Runs a lyon program

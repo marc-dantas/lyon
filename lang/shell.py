@@ -1,13 +1,26 @@
+from rich.console import Console
+
+CONSOLE = Console()
+
 
 def print_header(title, subtitle=None) -> None:
-    print(f" {title} ".center(80, '-'))
+    CONSOLE.print(f" [blue italic]{title}[/] ".center(80, '-'))
     if subtitle:
-        print(f" {subtitle} ".center(80, '-'))
+        CONSOLE.print(f" [blue bold]{subtitle}[/] ".center(80, '-'))
+
+
+def print_info(message):
+    CONSOLE.print(f' [blue bold]{message}[/] ')
+
+
+def print_success(message):
+    CONSOLE.print(f' [green bold]{message}[/] ')
 
 
 def print_hint(hint: str) -> None:
-    print(f"\t-> {hint}")
+    CONSOLE.print(f"\t-> [italic]{hint}[/]")
 
 
 def get() -> str:
-    return input('>>> ')
+    CONSOLE.print('[yellow]>>>[/] ', end='')
+    return input()
