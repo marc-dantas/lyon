@@ -1,7 +1,8 @@
 # Actions module for lyon
-from .util import filter_space, filter_num, interpret
+from .util import filter_space, filter_num, interpret, throw
 from .core import Command, CommandProcessor, CommandInterpreter, CommandTable
 from .memory import Space, Num, Var
+from .errs import INVALID_ARG
 
 # Memory
 SPACE = Space()
@@ -88,10 +89,13 @@ def div(val: str) -> None:
 def runfile(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
-    with open(f'{val}') as f:
-        TABLE.insert_commands(COMMANDS)
-        for line in f:
-            interpret(PROCESSOR, INTERPRETER, line)
+    try:
+        with open(f'{val}') as f:
+            TABLE.insert_commands(COMMANDS)
+            for line in f:
+                interpret(PROCESSOR, INTERPRETER, line)
+    except FileNotFoundError:
+        throw(INVALID_ARG)
 
 
 def ext(val: str) -> None:
