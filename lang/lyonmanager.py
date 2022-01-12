@@ -43,12 +43,23 @@ def create_program(name, version):
 
 
 def main():
-    if argv[1] == 'new':
-        create_program(argv[2], argv[3])
-        exit(1)
-    elif argv[1] == 'run':
-        run(argv[2])
-        exit(1)
+    if len(argv) > 1:
+        if argv[1] == 'new':
+            create_program(argv[2], argv[3])
+        elif argv[1] == 'run':
+            run(argv[2])
+        else:
+            show_info('Lyon Manager: [red]Invalid command[/]')
+    else:
+        show_info('Lyon Manager')
+    exit(1)
+
+
+def show_info(title):
+    print_success(title)
+    print_info('Usage:')
+    print_info('\tlyon.py new <name> <version>')
+    print_info('\tlyon.py run <program_path>')
 
 
 if __name__ == '__main__':
