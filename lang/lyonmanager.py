@@ -6,12 +6,8 @@ from engine.actions import runfile
 from shell import print_info, print_success
 
 
-def msg_info(title):
-    print_info(f'{title}...')
-
-
-def msg_success(title):
-    print_success(f'{title}')
+msg_info = print_info
+msg_success = print_success
 
 
 def run(program_path, debug=True):
@@ -42,6 +38,9 @@ def create_program(name, version, description, author):
     except FileExistsError:
         show_info(f'Lyon: [red]Directory "{name}" already exists[/]')
         exit(1)
+    except Exception:
+        show_info('Lyon: [red]Could not create the program.[/]')
+        exit(1)
     msg_info('Creating src directory')
     mkdir('src')
     chdir('src')
@@ -59,9 +58,9 @@ def main():
     if len(argv) > 1:
         if argv[1] == 'new' and len(argv) > 5:
             create_program(argv[2], argv[3], argv[4], argv[5])
-        elif argv[1] == 'rundebug':
+        elif argv[1] == 'rundebug' and len(argv) > 2:
             run(argv[2])
-        elif argv[1] == 'run':
+        elif argv[1] == 'run' and len(argv) > 2:
             run(argv[2], debug=False)
         else:
             show_info('Lyon Manager: [red]Invalid command or argument syntax[/]')
@@ -73,9 +72,9 @@ def main():
 def show_info(title):
     print_success(title)
     print_info('Usage:')
-    print_info('\tlyon.py new <name> <version> <description> <author>')
-    print_info('\tlyon.py run <program_path>')
-    print_info('\tlyon.py rundebug <program_path>')
+    print_info('\t(lyonmanager) new <name> <version> <description> <author>')
+    print_info('\t(lyonmanager) run <program_path>')
+    print_info('\t(lyonmanager) rundebug <program_path>')
 
 
 if __name__ == '__main__':
