@@ -10,7 +10,7 @@ msg_info = print_info
 msg_success = print_success
 
 
-def run(program_path, debug=True):
+def runp(program_path, debug=True):
     try:
         with open(program_path + '\\lyon.json', 'r') as f:
             infos = loads(f.read())
@@ -65,9 +65,9 @@ def main():
         if argv[1] == 'new' and len(argv) > 5:
             create_program(argv[2], argv[3], argv[4], argv[5])
         elif argv[1] == 'rundebug' and len(argv) > 2:
-            run(argv[2])
+            runp(argv[2])
         elif argv[1] == 'run' and len(argv) > 2:
-            run(argv[2], debug=False)
+            runp(argv[2], debug=False)
         else:
             show_info('Lyon Manager: [red]Invalid command or argument syntax[/]')
     else:
