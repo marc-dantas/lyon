@@ -73,3 +73,9 @@ LyonManager is a program that manages lyon programs (like a NPM).
         + `new <name> <version> <description> <author>` - Creates a new lyon program
         + `run <program_path>` - Runs a lyon program
         + `rundebug <program_path>` - Runs a lyon program with debug messages.
+- Program Structure (Tree)
+    + [program name] (folder [program])
+      + src (folder)
+        + main.lyon (file [function])
+        + ... (files)
+    + lyon.json (file)
