@@ -11,8 +11,14 @@ msg_success = print_success
 
 
 def run(program_path, debug=True):
-    with open(program_path + '\\lyon.json', 'r') as f:
-        infos = loads(f.read())
+    try:
+        with open(program_path + '\\lyon.json', 'r') as f:
+            infos = loads(f.read())
+    except FileNotFoundError:
+        show_info(f'Lyon Manager: [red]Program "{program_path}" not found[/]')
+        exit(1)
+    except Exception:
+        show_info(f'Lyon Manager: [red]Could not read "{program_path}"[/]')
     if debug:
         msg_info(f'LyonManager: Running "{infos["name"]}" v{infos["version"]}')
     chdir(program_path)
