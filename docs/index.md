@@ -21,7 +21,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
     + `mul <number>`
     + `div <number>`
 - Other commands
-    + `runfile <file>` - Runs a file
+    + `run <file>` - Runs a file
     + `ext` - Exit lyon
 
 <br>

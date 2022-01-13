@@ -86,7 +86,7 @@ def div(val: str) -> None:
     NUM.div(val)
 
 
-def runfile(val: str) -> None:
+def run(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
     try:
@@ -116,6 +116,6 @@ COMMANDS = [
     Command(name='sub', action=sub),
     Command(name='mul', action=mul),
     Command(name='div', action=div),
-    Command(name='runfile', action=runfile),
+    Command(name='run', action=run),
     Command(name='ext', action=ext)
 ]
