@@ -1,3 +1,5 @@
+from rich.console import Console
+
 interpolations = ['@NUM', '@SPACE']
 comments = ['#', ';']
 
@@ -36,4 +38,4 @@ def throw(code: object) -> None:
     Args:
         code (object): The error code
     """
-    print(f'ERR {code}')
+    Console().print(f'[red]ERROR: [italic bold]{code}[/][/]')
