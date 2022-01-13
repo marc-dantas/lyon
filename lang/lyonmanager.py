@@ -2,7 +2,7 @@ from sys import argv
 from os import mkdir, chdir
 from time import sleep
 from json import dump, loads
-from engine.actions import runfile
+from engine.actions import run
 from shell import print_info, print_success
 
 
@@ -23,7 +23,7 @@ def run(program_path, debug=True):
         msg_info(f'LyonManager: Running "{infos["name"]}" v{infos["version"]}')
     chdir(program_path)
     chdir('src')
-    runfile(infos['main'])
+    run(infos['main'])
     if debug:
         msg_info(f'LyonManager: Finished "{infos["name"]}" v{infos["version"]}')
 
