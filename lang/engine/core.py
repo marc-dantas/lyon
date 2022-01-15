@@ -1,5 +1,5 @@
 from typing import Callable
-from .util import throw, comments
+from .util import throw
 from .errs import INVALID_COMMAND
 
 
@@ -52,13 +52,12 @@ class CommandTable:
             self.insert(command)
 
     def exists(self, name: str) -> bool:
-        return self.get(name) is not None
+        return any(not not i for i in self.commands
+                   if i.name == name)
 
     def get(self, name: str) -> Command:
-        for command in self.commands:
-            if command.name == name:
-                return command
-        return None
+        return next(i for i in self.commands
+                    if i.name == name)
 
     def __repr__(self) -> str:
         return self._commands
@@ -81,15 +80,18 @@ class CommandInterpreter:
         self._command_table = command_table
 
     @property
-    def command_table(self) -> str:
+    def command_table(self) -> list[Command]:
         return self._command_table
 
-    def run_command(self, token: CommandToken) -> object:
+    def get_action(self, token: CommandToken) -> tuple:
         cmd = (token.val).split(':')
         if self._command_table.exists(cmd[0]):
-            return self._command_table.get(cmd[0]).action(cmd[1])
-        elif cmd[0][0] in comments:
-            return None
+            return (self._command_table.get(cmd[0]).action, cmd[1])
+        return (None, None)
+
+    def run_command(self, token: CommandToken) -> None:
+        action, parameter = self.get_action(token)
+        if action is not None or parameter is not None:
+            action(parameter)
         else:
             throw(INVALID_COMMAND)
-            return None

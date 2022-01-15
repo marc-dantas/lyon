@@ -1,7 +1,6 @@
 from rich.console import Console
 
 interpolations = ['@NUM', '@SPACE']
-comments = ['#', ';']
 
 
 def interpret(processor, interpreter, command: str) -> bool:
