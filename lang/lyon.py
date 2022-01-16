@@ -1,13 +1,7 @@
-from engine.actions import COMMANDS
+from engine.actions import COMMANDS, PROCESSOR, INTERPRETER
 import shell
 import engine.core
 import engine.util
-
-# Constants
-TABLE = engine.core.CommandTable()
-TABLE.insert_commands(COMMANDS)
-PROCESSOR = engine.core.CommandProcessor()
-INTERPRETER = engine.core.CommandInterpreter(TABLE)
 
 
 def main() -> None:
