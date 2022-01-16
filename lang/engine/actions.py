@@ -3,6 +3,7 @@ from .util import filter_space, filter_num, interpret, throw
 from .core import Command, CommandProcessor, CommandInterpreter, CommandTable
 from .memory import Space, Num, Var
 from .errs import FILE_ERR
+from sys import exit
 
 # Memory
 SPACE = Space()
