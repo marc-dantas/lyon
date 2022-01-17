@@ -1,6 +1,13 @@
 from typing import Callable
 from .util import throw
 from .errs import INVALID_COMMAND
+from re import match
+
+OPERATORS = {
+    '=': r'.+\=.+',
+    '>': r'.+\>.+',
+    '<': r'.+\<.+'
+}
 
 
 class CommandToken:
@@ -95,3 +102,28 @@ class CommandInterpreter:
             action(parameter)
         else:
             throw(INVALID_COMMAND)
+
+
+class ExpressionParser:
+
+    def evaluate(self, expr: str) -> bool:
+        left, right, op = self.tokenize_expr(expr)
+        if not all([left, right, op]):
+            return False
+        # FIXME: Temporary solution
+        match op:
+            case '=':
+                return left == right
+            case '>':
+                return left > right
+            case '<':
+                return left < right
+
+    def tokenize_expr(self, string: str) -> tuple[str, str, str]:
+        if not string:
+            return ('', '', '')
+        for op, regex in OPERATORS.items():
+            if match(regex, string):
+                left, right = string.split(op, 1)
+                return (left, right, op)
+        return ('', '', '')
