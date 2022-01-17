@@ -1,9 +1,15 @@
 # Actions module for lyon
 from .util import filter_space, filter_num, interpret, throw
-from .core import Command, CommandProcessor, CommandInterpreter, CommandTable
 from .memory import Space, Num, Var
 from .errs import FILE_ERR
 from sys import exit
+from .core import (
+    Command,
+    CommandProcessor,
+    CommandInterpreter,
+    CommandTable,
+    ExpressionParser
+)
 
 # Memory
 SPACE = Space()
@@ -99,6 +105,31 @@ def run(val: str) -> None:
         throw(FILE_ERR)
 
 
+def runif(val: str) -> None:
+    val = filter_num(val, str(NUM.value))
+    val = filter_space(val, str(SPACE.value))
+    expr = ExpressionParser().evaluate(SPACE.value)
+    if expr:
+        run(val)
+
+
+def runelse(val: str) -> None:
+    val = filter_num(val, str(NUM.value))
+    val = filter_space(val, str(SPACE.value))
+    expr = ExpressionParser().evaluate(SPACE.value)
+    if not expr:
+        run(val)
+
+
+def runwhile(val: str) -> None:
+    val = filter_num(val, str(NUM.value))
+    val = filter_space(val, str(SPACE.value))
+    expr = ExpressionParser().evaluate(SPACE.value)
+    while expr:
+        run(val)
+        expr = ExpressionParser().evaluate(SPACE.value)
+
+
 def ext(val: str) -> None:
     exit()
 
@@ -118,5 +149,8 @@ COMMANDS = [
     Command(name='mul', action=mul),
     Command(name='div', action=div),
     Command(name='run', action=run),
+    Command(name='runif', action=runif),
+    Command(name='runelse', action=runelse),
+    Command(name='runwhile', action=runwhile),
     Command(name='ext', action=ext)
 ]

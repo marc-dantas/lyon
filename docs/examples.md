@@ -20,7 +20,7 @@ outln --- Bye! ---
 
 <hr>
 
-<h3 id="outln">Example: Simple Adder</h3>
+### Example: Simple Adder
 
 ```
 outln --- Welcome! ---
@@ -44,7 +44,7 @@ outln The sum is @SPACE
 
 <hr>
 
-<h3 id="outln">Example: Running files</h3>
+### Example: Running files
 
 - main.lyon
 ```
@@ -67,4 +67,28 @@ outln B = @SPACE
 
 <hr>
 
+### Example: Guess the number
+
+main.lyon
+```
+var guess
+rdin
+val @SPACE
+ldvar guess
+iowrt @SPACE=10
+runif guessed.lyon
+runelse not_guessed.lyon
+```
+
+guessed.lyon
+```
+outln You guessed it!
+```
+
+not_guessed.lyon
+```
+outln You did not guess it!
+```
+
+<hr>
 > NOTE: Have fun with lyon!

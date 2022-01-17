@@ -20,6 +20,10 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
     + `sub <number>`
     + `mul <number>`
     + `div <number>`
+- Flow Control
+    + `runif <file>`
+    + `runelse <file>`
+    + `runwhile <file>`
 - Other commands
     + `run <file>` - Runs a file
     + `ext` - Exit lyon
@@ -30,6 +34,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - [IO Commands](./io-commands.md)
 - [Variable commands](./variable-commands.md)
 - [Math commands](./math-commands.md)
+- [Flow Control](./flow-control.md)
 
 <hr>
 
