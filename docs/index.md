@@ -24,6 +24,10 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
     + `runif <file>`
     + `runelse <file>`
     + `runwhile <file>`
+- File Commands
+    + `fread <file>`
+    + `fwrite <file>`
+    + `fwriteln <file>`
 - Other commands
     + `run <file>` - Runs a file
     + `ext` - Exit lyon
@@ -35,6 +39,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - [Variable commands](./variable-commands.md)
 - [Math commands](./math-commands.md)
 - [Flow Control](./flow-control.md)
+- [File Commands](./file-commands.md)
 
 <hr>
 

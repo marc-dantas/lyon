@@ -130,6 +130,27 @@ def runwhile(val: str) -> None:
         expr = ExpressionParser().evaluate(SPACE.value)
 
 
+def fread(val: str) -> None:
+    val = filter_num(val, str(NUM.value))
+    val = filter_space(val, str(SPACE.value))
+    with open(f'{val}') as f:
+        SPACE.set(f.read())
+       
+ 
+def fwrite(val: str) -> None:
+    val = filter_num(val, str(NUM.value))
+    val = filter_space(val, str(SPACE.value))
+    with open(f'{val}', 'w') as f:
+        f.write(SPACE.value)
+
+        
+def fwriteln(val: str) -> None:
+    val = filter_num(val, str(NUM.value))
+    val = filter_space(val, str(SPACE.value))
+    with open(f'{val}', 'w') as f:
+        f.write(SPACE.value + '\n')
+
+
 def ext(val: str) -> None:
     exit()
 
@@ -152,5 +173,8 @@ COMMANDS = [
     Command(name='runif', action=runif),
     Command(name='runelse', action=runelse),
     Command(name='runwhile', action=runwhile),
+    Command(name='fread', action=fread),
+    Command(name='fwrite', action=fwrite),
+    Command(name='fwriteln', action=fwriteln),
     Command(name='ext', action=ext)
 ]
