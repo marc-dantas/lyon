@@ -133,22 +133,31 @@ def runwhile(val: str) -> None:
 def fread(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
-    with open(f'{val}') as f:
-        SPACE.set(f.read())
-       
+    try:
+        with open(f'{val}') as f:
+            SPACE.set(f.read())
+    except Exception:
+        throw(FILE_ERR)
  
+
 def fwrite(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
-    with open(f'{val}', 'w') as f:
-        f.write(SPACE.value)
+    try:
+        with open(f'{val}', 'w') as f:
+            f.write(SPACE.value)
+    except Exception:
+        throw(FILE_ERR)
 
-        
+     
 def fwriteln(val: str) -> None:
     val = filter_num(val, str(NUM.value))
     val = filter_space(val, str(SPACE.value))
-    with open(f'{val}', 'w') as f:
-        f.write(SPACE.value + '\n')
+    try:
+        with open(f'{val}', 'w') as f:
+            f.write(SPACE.value + '\n')
+    except Exception:
+        throw(FILE_ERR)
 
 
 def ext(val: str) -> None:
