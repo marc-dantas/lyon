@@ -91,7 +91,7 @@ class CommandInterpreter:
         return self._command_table
 
     def get_action(self, token: CommandToken) -> tuple:
-        cmd = (token.val).split(':')
+        cmd = (token.val).split(':', 1)
         if self._command_table.exists(cmd[0]):
             return (self._command_table.get(cmd[0]).action, cmd[1])
         return (None, None)
