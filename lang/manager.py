@@ -84,9 +84,9 @@ def create_program(name: str) -> None:
 def show_info(title: str) -> None:
     print_success(title)
     print_info('Usage:')
-    print_info('\t(lyon) new <name> <version> <description> <author>')
-    print_info('\t(lyon) run <program_path>')
-    print_info('\t(lyon) rundebug <program_path>')
+    print_info('\t(lyon) --manage new <name>')
+    print_info('\t(lyon) --manage run <program_path>')
+    print_info('\t(lyon) --manage rundebug <program_path>')
     exit(1)
 
 

@@ -64,14 +64,16 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 <hr>
 
 ### How lyon interpret files, commands & folders...?
-lyon has a different way of interpreting files and folders, like folders being programs and files being functions. So you can use a manager (Like LyonManager) to create programs (folders) that contain various functions (files).
+lyon has a different way of interpreting files and folders, like folders being programs and files being functions. So you can use a manager to create programs (folders) that contain various functions (files).
 
 <hr>
 
-### Lyon management
+### Using Lyon
+- To start the lyon interactive shell, type `lyon -s` or `lyon --shell`
+#### Lyon Management
 Lyon has a program that manages lyon programs (like a NPM).
 - Usage
-    + `$ [lyon] <command> <args>`
+- To use the management mode, use `lyon -m <command>` or `lyon --manage <command>`
     + Commands
         + `new <name>` - Creates a new lyon program
         + `run <program_path>` - Runs a lyon program
