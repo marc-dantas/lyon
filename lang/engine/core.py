@@ -1,10 +1,10 @@
 from typing import Callable
 from .util import throw
-from .errs import INVALID_COMMAND
+from .errs import INVALID_ARG, INVALID_COMMAND
 from re import match
 
 OPERATORS = {
-    '=': r'.+\=.+',
+    '==': r'.+\=.+',
     '>': r'.+\>.+',
     '<': r'.+\<.+'
 }
@@ -110,14 +110,10 @@ class ExpressionParser:
         left, right, op = self.tokenize_expr(expr)
         if not all([left, right, op]):
             return False
-        # FIXME: Temporary solution
-        match op:
-            case '=':
-                return left == right
-            case '>':
-                return left > right
-            case '<':
-                return left < right
+        try:
+            return eval(f'{left}{op}{right}')
+        except Exception:
+            return False
 
     def tokenize_expr(self, string: str) -> tuple[str, str, str]:
         if not string:
