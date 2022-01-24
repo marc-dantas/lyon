@@ -33,6 +33,8 @@ def start_shell() -> None:
     shell.print_hint('Type "ext" to [bold]exit[/]')
     shell.print_hint('Type "run <filename>" to [bold]run[/] a file (function)')
     shell.print_hint('See docs at <https://github.com/marc-dantas/lyon/blob/master/docs/index.md>')
+    shell.print_info('Copyright (c) 2022 - @marc-dantas')
+    shell.print_info('Licensed under the MIT License')
     while True:
         cmd = shell.get()
         res = engine.util.interpret(PROCESSOR, INTERPRETER, cmd)

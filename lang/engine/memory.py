@@ -18,8 +18,9 @@ class Space:
     def clear(self) -> None:
         self._value = "None"
 
-    def __str__(self) -> str:
-        return self._value
+    @property
+    def repr(self) -> str:
+        return '@SPACE'
 
 
 class Num:
@@ -56,8 +57,9 @@ class Num:
     def clear(self) -> None:
         self._num = 0.0
 
-    def __str__(self) -> str:
-        return str(self._num)
+    @property
+    def repr(self) -> str:
+        return '@NUM'
 
 
 class Var:

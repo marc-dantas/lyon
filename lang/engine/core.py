@@ -1,6 +1,7 @@
 from typing import Callable
 from .util import throw
 from .errs import INVALID_ARG, INVALID_COMMAND
+from .memory import Num
 from re import match
 
 OPERATORS = {
@@ -110,6 +111,8 @@ class ExpressionParser:
         left, right, op = self.tokenize_expr(expr)
         if not all([left, right, op]):
             return False
+        if Num.is_number(left) and Num.is_number(right):
+            return eval(f'{float(left)}{op}{float(right)}')
         try:
             return eval(f'{left}{op}{right}')
         except Exception:

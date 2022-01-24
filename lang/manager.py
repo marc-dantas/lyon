@@ -34,7 +34,7 @@ def run_program(path, debug=True) -> None:
         with open(path + '\\lyon.json', 'r') as f:
             infos = loads(f.read())
     except Exception:
-        show_info(f'Lyon Manager: [red]Could not read "{path}"[/]')
+        show_info(f'Lyon: [red]Could not read "{path}"[/]')
     if debug:
         start_msg()
     chdir(path)
@@ -87,6 +87,7 @@ def show_info(title: str) -> None:
     print_info('\t(lyon) --manage new <name>')
     print_info('\t(lyon) --manage run <program_path>')
     print_info('\t(lyon) --manage rundebug <program_path>')
+    print_info('\t(lyon) --shell')
     exit(1)
 
 

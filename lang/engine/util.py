@@ -11,24 +11,16 @@ def interpret(processor, interpreter, command: str) -> bool:
     return True
 
 
-def filter_num(text: str, value: str) -> str:
-    """Filter the "@NUM" interpolation from a string
+def filter_interpolations(base: str, *args) -> str:
+    """Filter the interpolations from a string
 
     Args:
-        text (str): The text to filter
-        value (str): The value to replace
+        base (str): The text to filter
+        *args: The interpolations (Memory objects) to filter
     """
-    return text.replace('@NUM', value)
-
-
-def filter_space(text: str, value: str) -> str:
-    """Filter the "@SPACE" interpolation from a string
-
-    Args:
-        text (str): The text to filter
-        value (str): The value to replace
-    """
-    return text.replace('@SPACE', value)
+    for memspace in args:
+        base = base.replace(memspace.repr, str(memspace.value))
+    return base
 
 
 def throw(code: object) -> None:

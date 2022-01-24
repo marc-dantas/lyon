@@ -1,3 +1,4 @@
+from cmath import exp
 from rich.console import Console
 
 CONSOLE = Console()
@@ -23,4 +24,7 @@ def print_hint(hint: str) -> None:
 
 def get() -> str:
     CONSOLE.print('[yellow]>>>[/] ', end='')
-    return input()
+    try:
+        return input()
+    except (Exception, KeyboardInterrupt):
+        exit(1)

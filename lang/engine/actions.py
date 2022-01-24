@@ -1,5 +1,5 @@
 # Actions module for lyon
-from .util import filter_space, filter_num, interpret, throw
+from .util import filter_interpolations, interpret, throw
 from .memory import Space, Num, Var
 from .errs import FILE_ERR
 from sys import exit
@@ -24,14 +24,12 @@ INTERPRETER = CommandInterpreter(TABLE)
 
 # Main command actions (functions)
 def out(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     print(val, end='')
 
 
 def outln(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     print(val)
 
 
@@ -40,62 +38,52 @@ def rdin(val: str) -> str:
 
 
 def clio(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     SPACE.clear()
 
 
 def iowrt(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     SPACE.set(val)
 
 
 def var(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     VAR.new(val)
 
 
 def val(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     VAR.set(val)
 
 
 def ldvar(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     SPACE.set(VAR.get(val))
 
 
 def sum(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     NUM.add(val)
 
 
 def sub(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     NUM.sub(val)
 
 
 def mul(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     NUM.mul(val)
 
 
 def div(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     NUM.div(val)
 
 
 def run(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}') as f:
             for line in f:
@@ -105,24 +93,21 @@ def run(val: str) -> None:
 
 
 def runif(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     expr = ExpressionParser().evaluate(SPACE.value)
     if expr:
         run(val)
 
 
 def runelse(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     expr = ExpressionParser().evaluate(SPACE.value)
     if not expr:
         run(val)
 
 
 def runwhile(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     expr = ExpressionParser().evaluate(SPACE.value)
     while expr:
         run(val)
@@ -130,8 +115,7 @@ def runwhile(val: str) -> None:
 
 
 def fread(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}') as f:
             SPACE.set(f.read())
@@ -140,8 +124,7 @@ def fread(val: str) -> None:
  
 
 def fwrite(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}', 'w') as f:
             f.write(SPACE.value)
@@ -150,8 +133,7 @@ def fwrite(val: str) -> None:
 
      
 def fwriteln(val: str) -> None:
-    val = filter_num(val, str(NUM.value))
-    val = filter_space(val, str(SPACE.value))
+    val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}', 'w') as f:
             f.write(SPACE.value + '\n')
