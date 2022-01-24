@@ -98,7 +98,6 @@ def run(val: str) -> None:
     val = filter_space(val, str(SPACE.value))
     try:
         with open(f'{val}') as f:
-            TABLE.insert_commands(COMMANDS)
             for line in f:
                 interpret(PROCESSOR, INTERPRETER, line)
     except Exception:
@@ -166,24 +165,32 @@ def ext(val: str) -> None:
 
 # All <Command> objects
 COMMANDS = [
+    # Input/Output Commands
     Command(name='out', action=out),
     Command(name='outln', action=outln),
     Command(name='rdin', action=rdin),
+    # IO Commands
     Command(name='clio', action=clio),
     Command(name='iowrt', action=iowrt),
+    # Variable Commands
     Command(name='var', action=var),
     Command(name='val', action=val),
     Command(name='ldvar', action=ldvar),
+    # Math Commands
     Command(name='sum', action=sum),
     Command(name='sub', action=sub),
     Command(name='mul', action=mul),
     Command(name='div', action=div),
-    Command(name='run', action=run),
+    # Flow Control Commands
     Command(name='runif', action=runif),
     Command(name='runelse', action=runelse),
     Command(name='runwhile', action=runwhile),
+    # File commands
     Command(name='fread', action=fread),
     Command(name='fwrite', action=fwrite),
     Command(name='fwriteln', action=fwriteln),
+    # Other commands
+    Command(name='run', action=run),
     Command(name='ext', action=ext)
 ]
+TABLE.insert_commands(COMMANDS)
