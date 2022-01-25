@@ -1,6 +1,7 @@
 from engine.actions import COMMANDS
 from sys import argv
 from manager import *
+from engine.actions import run
 import shell
 import engine.core
 import engine.util
@@ -12,7 +13,8 @@ PROCESSOR = engine.core.CommandProcessor()
 INTERPRETER = engine.core.CommandInterpreter(TABLE)
 ARGS = {
     'manage': ('--manage', '-m'),
-    'shell': ('--shell', '-s')
+    'shell': ('--shell', '-s'),
+    'command': ('--command', '-c')
 }
 
 
@@ -42,12 +44,20 @@ def start_shell() -> None:
             continue
 
 
+def run_cmd(cmd: str) -> None:
+    res = engine.util.interpret(PROCESSOR, INTERPRETER, cmd)
+    if not res:
+        return
+
+
 def main():
     if len(argv) > 1:
-        if argv[1] in ARGS['manage']:
+        if argv[1] in ARGS['manage'] and len(argv) > 4:
             manage()
-        elif argv[1] in ARGS['shell']:
+        elif argv[1] in ARGS['shell'] and len(argv) == 2:
             start_shell()
+        elif argv[1] in ARGS['command'] and len(argv) > 2:
+            run_cmd(argv[2])
         else:
             show_info('Lyon: [red]Invalid command or argument syntax[/]')
     else:

@@ -72,15 +72,26 @@ lyon has a different way of interpreting files and folders, like folders being p
 - To start the lyon interactive shell, type `lyon -s` or `lyon --shell`
 #### Lyon Management
 Lyon has a program that manages lyon programs (like a NPM).
-- Usage
+##### Usage
 - To use the management mode, use `lyon -m <command>` or `lyon --manage <command>`
     + Commands
         + `new <name>` - Creates a new lyon program
         + `run <program_path>` - Runs a lyon program
         + `rundebug <program_path>` - Runs a lyon program with debug messages.
-- Program Structure (Tree)
-    + [program name] (folder [program])
-      + src (folder)
-        + main.lyon (file [function])
-        + ... (files)
-    + lyon.json (file)
+    + Program Structure (Tree)
+      + [program name] (folder [program])
+        + src (folder)
+          + main.lyon (file [function])
+          + ... (files)
+      + lyon.json (file)
+- To run a single command, type `lyon -c <value>` or `lyon --command <value>`.
+
+### Condition Expressions
+- Condition Expressions are used to check a test
+- To use this, use the `iowrt` command to write a expression
+    + `iowrt @SPACE==None`
+    + & Checking with `runif`, `runelse` or `runwhile`
+        + `runif test.lyon`
+        + `runelse falsetest.lyon`
+        + `runwhile whiletest.lyon`
+- #### Attention: The expressions (for now) will consider spaces around the operator, such as `abc == abc` will return false, as the first value is "abc " and the second is " abc". But if you use `abc==abc` (no spaces around the operator) it will return true
