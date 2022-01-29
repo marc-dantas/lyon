@@ -117,7 +117,7 @@ def runwhile(val: str) -> None:
 def fread(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
-        with open(f'{val}') as f:
+        with open(f'{val}', 'r') as f:
             SPACE.set(f.read())
     except Exception:
         throw(FILE_ERR)
@@ -131,7 +131,7 @@ def fwrite(val: str) -> None:
     except Exception:
         throw(FILE_ERR)
 
-     
+
 def fwriteln(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:

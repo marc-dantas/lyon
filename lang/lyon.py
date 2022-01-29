@@ -52,7 +52,7 @@ def run_cmd(cmd: str) -> None:
 
 def main():
     if len(argv) > 1:
-        if argv[1] in ARGS['manage'] and len(argv) > 4:
+        if argv[1] in ARGS['manage'] and len(argv) > 3:
             manage()
         elif argv[1] in ARGS['shell'] and len(argv) == 2:
             start_shell()
