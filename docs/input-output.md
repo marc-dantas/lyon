@@ -7,7 +7,7 @@ By [@marc-dantas](https://github.com/marc-dantas)
 ### Commands
 - `out <value>` [here](#out)
 - `outln <value>` [here](#outln)
-- `rdin` [here](#rdin)
+- `readin` [here](#rdin)
 
 <hr>
 
@@ -25,7 +25,7 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 <hr>
 
-<h3 id="rdin">Command: <code>rdin</code></h3>
+<h3 id="readin">Command: <code>readin</code></h3>
 
 - Reads a value from the console and stores it in `@SPACE` space in the memory.
-- Syntax: `rdin`
+- Syntax: `readin`

@@ -33,16 +33,16 @@ def outln(val: str) -> None:
     print(val)
 
 
-def rdin(val: str) -> str:
+def readin(val: str) -> str:
     SPACE.set(input())
 
 
-def clio(val: str) -> None:
+def mclear(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     SPACE.clear()
 
 
-def iowrt(val: str) -> None:
+def mwrite(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     SPACE.set(val)
 
@@ -151,14 +151,14 @@ COMMANDS = [
     # Input/Output Commands
     Command(name='out', action=out),
     Command(name='outln', action=outln),
-    Command(name='rdin', action=rdin),
+    Command(name='readin', action=readin),
     # IO Commands
-    Command(name='clio', action=clio),
-    Command(name='iowrt', action=iowrt),
+    Command(name='mclear', action=mclear),
+    Command(name='mwrite', action=mwrite),
     # Variable Commands
     Command(name='var', action=var),
     Command(name='val', action=val),
-    Command(name='ldvar', action=ldvar),
+    Command(name='loadvar', action=ldvar),
     # Math Commands
     Command(name='sum', action=sum),
     Command(name='sub', action=sub),

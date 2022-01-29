@@ -7,14 +7,14 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - Input/Output
     + `out <value>`
     + `outln <value>`
-    + `rdin`
+    + `readin`
 - IO Commands
-    + `clio`
-    + `iowrt <value>`
+    + `mclear`
+    + `mwrite <value>`
 - Variable commands
     + `var <name>`
     + `val <value>`
-    + `ldvar <name>`
+    + `loadvar <name>`
 - Math commands
     + `sum <number>`
     + `sub <number>`

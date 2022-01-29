@@ -10,9 +10,9 @@ By [@marc-dantas](https://github.com/marc-dantas)
 var name
 outln --- Welcome! ---
 outln What is your name?
-rdin
+readin
 val @SPACE
-ldvar name
+loadvar name
 outln Hello, @SPACE!
 outln --- Bye! ---
 ```
@@ -26,16 +26,16 @@ outln --- Bye! ---
 outln --- Welcome! ---
 var n1
 outln First number: 
-rdin 
+readin 
 val @SPACE
 var n2
 outln Second number:
-rdin
+readin
 val @SPACE
 var sum
-ldvar n1
+loadvar n1
 sum @SPACE
-ldvar n2
+loadvar n2
 sum @SPACE
 val $NUM
 ldvar sum
@@ -51,7 +51,7 @@ outln The sum is @SPACE
 outln From main.lyon!
 var a
 val the value from a
-ldvar a
+loadvar a
 outln A = @SPACE
 runfile other.lyon
 ```
@@ -61,7 +61,7 @@ runfile other.lyon
 outln From other.lyon
 var b
 val the value from b
-ldvar b
+loadvar b
 outln B = @SPACE
 ```
 
@@ -72,10 +72,10 @@ outln B = @SPACE
 main.lyon
 ```
 var guess
-rdin
+readin
 val @SPACE
-ldvar guess
-iowrt @SPACE=10
+loadvar guess
+mwrite @SPACE=10
 runif guessed.lyon
 runelse not_guessed.lyon
 ```

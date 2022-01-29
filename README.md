@@ -5,6 +5,7 @@ By [@marc-dantas](https://github.com/marc-dantas).
 - Read the [documentation](./docs/index.md).
 - See some [examples](./docs/examples.md).
 
-## Lyon's future features
+## Lyon future features for version 2.0
 - Can pass parameter in functions
 - A better data handling system
+- Arrays
