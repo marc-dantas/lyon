@@ -91,14 +91,14 @@ class CommandInterpreter:
     def command_table(self) -> list[Command]:
         return self._command_table
 
-    def get_action(self, token: CommandToken) -> tuple:
+    def get_command(self, token: CommandToken) -> tuple:
         cmd = (token.val).split(':', 1)
         if self._command_table.exists(cmd[0]):
             return (self._command_table.get(cmd[0]).action, cmd[1])
         return (None, None)
 
     def run_command(self, token: CommandToken) -> None:
-        action, parameter = self.get_action(token)
+        action, parameter = self.get_command(token)
         if action is not None or parameter is not None:
             action(parameter)
         else:
