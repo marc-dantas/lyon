@@ -86,8 +86,9 @@ def run(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}') as f:
-            for line in f:
-                interpret(PROCESSOR, INTERPRETER, line)
+            cmds = f.read().split('\n')
+            for cmd in cmds:
+                interpret(PROCESSOR, INTERPRETER, cmd)
     except Exception:
         throw(FILE_ERR)
 
