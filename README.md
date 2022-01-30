@@ -1,5 +1,4 @@
-# Lyon language
-## Develop command by command
+# Lyon language | Develop command by command
 By [@marc-dantas](https://github.com/marc-dantas).
 
 - Read the [documentation](./markdown_docs/index.md).
