@@ -1,6 +1,6 @@
 # Lyon language
+## Develop command by command
 By [@marc-dantas](https://github.com/marc-dantas).
-## A simple command language made in Python!
 
 - Read the [documentation](./markdown_docs/index.md).
 - See some [examples](./markdown_docs/examples.md).
