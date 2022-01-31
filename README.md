@@ -6,6 +6,10 @@ By [@marc-dantas](https://github.com/marc-dantas).
 - Visit the [Lyon website](https://marc-dantas.github.io/lyon).
 - Goto the [credits](./CREDITS.md).
 
+
+## What is Lyon? 🤔
+Lyon is a simple to use interpreted command language made for the purpose of teaching low-level programming to programming beginners with simple commands that work in the same way as low-level languages like Assembly.
+
 ## Lyon future features for version 2.0
 - Can pass parameter in functions
 - A better data handling system
