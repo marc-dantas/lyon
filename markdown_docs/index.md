@@ -86,10 +86,12 @@ Lyon has a program that manages lyon programs (like a NPM).
       + lyon.json (file)
 - To run a single command, type `lyon -c <value>` or `lyon --command <value>`.
 
+<hr>
 
 ### Lyon Versions
 Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate that it is an unreleased version, `FINAL` to indicate that it is a released version, and `OTHER` to indicate that it is just an idea or minor version.
 
+<hr>
 
 ### Condition Expressions
 - Condition Expressions are used to check a test
@@ -99,4 +101,4 @@ Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate th
         + `runif test.lyon`
         + `runelse falsetest.lyon`
         + `runwhile whiletest.lyon`
-- #### Attention: The expressions (for now) will consider spaces around the operator, such as `abc == abc` will return false, as the first value is "abc " and the second is " abc". But if you use `abc==abc` (no spaces around the operator) it will return true
+- **_Attention_**: The expressions (for now) will consider spaces around the operator, such as `abc == abc` will return false, as the first value is "abc " and the second is " abc". But if you use `abc==abc` (no spaces around the operator) it will return true
