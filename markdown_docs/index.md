@@ -86,6 +86,11 @@ Lyon has a program that manages lyon programs (like a NPM).
       + lyon.json (file)
 - To run a single command, type `lyon -c <value>` or `lyon --command <value>`.
 
+
+### Lyon Versions
+Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate that it is an unreleased version, `FINAL` to indicate that it is a released version, and `OTHER` to indicate that it is just an idea or minor version.
+
+
 ### Condition Expressions
 - Condition Expressions are used to check a test
 - To use this, use the `iowrt` command to write a expression

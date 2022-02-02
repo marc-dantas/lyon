@@ -5,9 +5,9 @@ CONSOLE = Console()
 
 
 def print_header(title, subtitle=None) -> None:
-    CONSOLE.print(f" [blue italic]{title}[/] ".center(80, '-'), style='green')
+    CONSOLE.print(f" [blue italic]{title}[/] ".center(50, '-'), style='green')
     if subtitle:
-        CONSOLE.print(f" [blue bold]{subtitle}[/] ".center(80, '-'), style='green')
+        CONSOLE.print(f" [blue bold]{subtitle}[/] ".center(48, '-'), style='green')
 
 
 def print_info(message):

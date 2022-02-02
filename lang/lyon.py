@@ -5,6 +5,7 @@ from engine.actions import run
 import shell
 import engine.core
 import engine.util
+import engine
 
 # Constants
 TABLE = engine.core.CommandTable()
@@ -14,7 +15,8 @@ INTERPRETER = engine.core.CommandInterpreter(TABLE)
 ARGS = {
     'manage': ('--manage', '-m'),
     'shell': ('--shell', '-s'),
-    'command': ('--command', '-c')
+    'command': ('--command', '-c'),
+    'version': ('--version', '-v'),
 }
 
 
@@ -58,6 +60,8 @@ def main():
             start_shell()
         elif argv[1] in ARGS['command'] and len(argv) > 2:
             run_cmd(argv[2])
+        elif argv[1] in ARGS['version'] and len(argv) == 2:
+            print_success(engine.VERSION)
         else:
             show_info('Lyon: [red]Invalid command or argument syntax[/]')
     else:
