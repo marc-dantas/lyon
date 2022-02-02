@@ -1,6 +1,8 @@
 # Lyon language | Learn command by command
 By [@marc-dantas](https://github.com/marc-dantas).
 
+![license](https://img.shields.io/github/license/marc-dantas/lyon?style=flat-square)
+
 - Read the [documentation](./markdown_docs/index.md).
 - See some [examples](./markdown_docs/examples.md).
 - Visit the [Lyon website](https://marc-dantas.github.io/lyon).
