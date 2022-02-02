@@ -89,7 +89,7 @@ Lyon has a program that manages lyon programs (like a NPM).
 <hr>
 
 ### Lyon Versions
-Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate that it is an unreleased version, `FINAL` to indicate that it is a released version, and `OTHER` to indicate that it is just an idea or minor version.
+Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate that it is an unreleased version, `FINAL` to indicate that it is a released version, and `OTHER` to indicate that it is just an idea or modified version.
 
 <hr>
 
