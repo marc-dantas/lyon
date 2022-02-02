@@ -58,6 +58,8 @@ def main():
             manage()
         elif argv[1] in ARGS['shell'] and len(argv) == 2:
             start_shell()
+        elif len(argv) == 1:
+            start_shell()
         elif argv[1] in ARGS['command'] and len(argv) > 2:
             run_cmd(argv[2])
         elif argv[1] in ARGS['version'] and len(argv) == 2:

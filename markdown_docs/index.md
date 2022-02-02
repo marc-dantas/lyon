@@ -95,8 +95,8 @@ Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate th
 
 ### Condition Expressions
 - Condition Expressions are used to check a test
-- To use this, use the `iowrt` command to write a expression
-    + `iowrt @SPACE==None`
+- To use this, use the `mwrite` command to write a expression
+    + `mwrite @SPACE==None`
     + & Checking with `runif`, `runelse` or `runwhile`
         + `runif test.lyon`
         + `runelse falsetest.lyon`

@@ -114,7 +114,7 @@ class ExpressionParser:
         if Num.is_number(left) and Num.is_number(right):
             return eval(f'{float(left)}{op}{float(right)}')
         try:
-            return eval(f'{left}{op}{right}')
+            return eval(f'"{left}"{op}"{right}"')
         except Exception:
             return False
 
