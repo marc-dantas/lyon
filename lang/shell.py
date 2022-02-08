@@ -15,7 +15,7 @@ def print_info(message):
 
 
 def print_success(message):
-    CONSOLE.print(f'[green bold]{message}[/] ')
+    CONSOLE.print(message, style='green')
 
 
 def print_hint(hint: str) -> None:
