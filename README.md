@@ -1,4 +1,4 @@
-# Lyon language | Learn command by command
+# Lyon language
 By [@marc-dantas](https://github.com/marc-dantas).
 
 ![license](https://img.shields.io/github/license/marc-dantas/lyon?style=flat-square)
