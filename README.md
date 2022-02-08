@@ -12,8 +12,8 @@ By [@marc-dantas](https://github.com/marc-dantas).
 ## What is Lyon? 🤔
 Lyon is a simple to use interpreted command language made for the purpose of teaching low-level programming to programming beginners with simple commands that work in the same way as low-level languages like Assembly.
 
-## Lyon future features for version 2.0
+## Lyon features for the next versions
 - Can pass parameter in functions
-- A better data handling system
+- [x] A better data handling system
 - Arrays
 - Save "compiled" lyon files (`*.lyc` extension)

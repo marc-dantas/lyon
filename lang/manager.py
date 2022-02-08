@@ -33,15 +33,15 @@ def run_program(path, debug=True) -> None:
     try:
         with open(path + '\\lyon.json', 'r') as f:
             infos = loads(f.read())
+        if debug:
+            start_msg()
+        chdir(path)
+        chdir('src')
+        run(infos['main'])
+        if debug:
+            end_msg()
     except Exception:
         show_info(f'Lyon: [red]Could not read "{path}"[/]')
-    if debug:
-        start_msg()
-    chdir(path)
-    chdir('src')
-    run(infos['main'])
-    if debug:
-        end_msg()
 
 
 def action_message(callback, message: str) -> None:
@@ -88,13 +88,4 @@ def show_info(title: str) -> None:
     print_info('\t(lyon) --manage run <program_path>')
     print_info('\t(lyon) --manage rundebug <program_path>')
     print_info('\t(lyon) --shell')
-    exit(1)
-
-
-def show_err(title: str) -> None:
-    print_info(f'Lyon: [red]{title}[/]')
-    print_info('Usage:')
-    print_info('\t(lyon) new <name>')
-    print_info('\t(lyon) run <program_path>')
-    print_info('\t(lyon) rundebug <program_path>')
     exit(1)

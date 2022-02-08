@@ -1,17 +1,10 @@
-from engine.actions import COMMANDS
-from sys import argv
 from manager import *
-from engine.actions import run
+from engine.actions import PROCESSOR, INTERPRETER
+from sys import argv
+from engine import util, VERSION
 import shell
-import engine.core
-import engine.util
-import engine
 
 # Constants
-TABLE = engine.core.CommandTable()
-TABLE.insert_commands(COMMANDS)
-PROCESSOR = engine.core.CommandProcessor()
-INTERPRETER = engine.core.CommandInterpreter(TABLE)
 ARGS = {
     'manage': ('--manage', '-m'),
     'shell': ('--shell', '-s'),
@@ -41,13 +34,13 @@ def start_shell() -> None:
     shell.print_info('Licensed under the MIT License')
     while True:
         cmd = shell.get()
-        res = engine.util.interpret(PROCESSOR, INTERPRETER, cmd)
+        res = util.interpret(PROCESSOR, INTERPRETER, cmd)
         if not res:
             continue
 
 
 def run_cmd(cmd: str) -> None:
-    res = engine.util.interpret(PROCESSOR, INTERPRETER, cmd)
+    res = util.interpret(PROCESSOR, INTERPRETER, cmd)
     if not res:
         return
 
@@ -63,11 +56,11 @@ def main():
         elif argv[1] in ARGS['command'] and len(argv) > 2:
             run_cmd(argv[2])
         elif argv[1] in ARGS['version'] and len(argv) == 2:
-            print_success(engine.VERSION)
+            print_success(VERSION)
         else:
             show_info('Lyon: [red]Invalid command or argument syntax[/]')
     else:
-        show_info('Lyon')
+        start_shell()
     exit(1)
 
 

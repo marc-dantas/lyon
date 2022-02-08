@@ -19,14 +19,17 @@ def filter_interpolations(base: str, *args) -> str:
         *args: The interpolations (Memory objects) to filter
     """
     for memspace in args:
-        base = base.replace(memspace.repr, str(memspace.value))
+        base = str(base).replace(memspace.repr, str(memspace.value))
     return base
 
 
-def throw(code: object) -> None:
+def throw(value: object, at: str = '') -> None:
     """Throw an error
 
     Args:
-        code (object): The error code
+        value (object): The error code or error message
     """
-    Console().print(f'[red]ERROR: [italic bold]{code}[/][/]')
+    if not at:
+        Console().print(f'[red]ERROR: [italic bold]{value}[/][/]')
+    else:
+        Console().print(f'[red]ERROR → [yellow bold]{at}[/]: [italic bold]{value}[/][/]')

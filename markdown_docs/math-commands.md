@@ -5,10 +5,18 @@ By [@marc-dantas](https://github.com/marc-dantas)
 <hr>
 
 ### Commands
+- `clearnum` [here](#clearnum)
 - `sum <number>` [here](#sum)
 - `sub <number>` [here](#sub)
 - `mul <number>` [here](#mul)
 - `div <number>` [here](#div)
+
+<hr>
+
+<h3 id="clearnum">Command: <code>clearnum</code></h3> 
+
+- Clear the `@NUM` space in the memory.
+- Syntax: `clearnum`
 
 <hr>
 

@@ -1,28 +1,23 @@
 from typing import Callable
 from .util import throw
 from .errs import INVALID_ARG, INVALID_COMMAND
-from .memory import Num
+from .data_models import *
 from re import match
-
-OPERATORS = {
-    '==': r'.+\=.+',
-    '>': r'.+\>.+',
-    '<': r'.+\<.+'
-}
 
 
 class CommandToken:
 
-    def __init__(self, command: str, parameter: str = None) -> None:
+    def __init__(self, command: str,
+                 parameter: String | Number = None) -> None:
         self._cmd = command
-        self._param = parameter
+        self._param = parameter or 'None'
 
     @property
-    def val(self) -> str:
-        return f'{self._cmd}:{self._param}'
+    def val(self) -> list[str | (String | Number)]:
+        return [self._cmd, self._param]
 
-    def __str__(self) -> str:
-        return f'{self._cmd}:{self._param}'
+    def __repr__(self) -> list:
+        return [self._cmd, self._param]
 
 
 class Command:
@@ -74,12 +69,26 @@ class CommandTable:
 class CommandProcessor:
 
     @staticmethod
-    def format_cmd(command: str) -> tuple:
-        format = tuple(i.lstrip() for i in command.split(' ', 1))
-        return tuple(i for i in format if i)
+    def format_cmd(command: str) -> str:
+        return command.strip()
         
     def tokenize_command(self, command: str) -> CommandToken:
-        return CommandToken(*CommandProcessor.format_cmd(command))
+        format = self.format_cmd(command).split(' ', 1)
+        if len(format) > 1:
+            cmd, param = format
+        else:
+            cmd = format[0]
+            param = '"None"'
+        cmd = cmd.lower()
+        token = None
+        if Number.is_number(param):
+            token = CommandToken(cmd, Number(param))
+        elif String.is_string(param):
+            token = CommandToken(cmd, String(param))
+        else:
+            throw(INVALID_ARG, '(command tokenization)')
+            return CommandToken(cmd, String('" "'))
+        return token
 
 
 class CommandInterpreter:
@@ -88,13 +97,14 @@ class CommandInterpreter:
         self._command_table = command_table
 
     @property
-    def command_table(self) -> list[Command]:
+    def command_table(self) -> CommandTable:
         return self._command_table
 
     def get_command(self, token: CommandToken) -> tuple:
-        cmd = (token.val).split(':', 1)
-        if self._command_table.exists(cmd[0]):
-            return (self._command_table.get(cmd[0]).action, cmd[1])
+        cmd, param = token.val
+        if self.command_table.exists(cmd):
+            cmd = self.command_table.get(cmd)
+            return (cmd.action, param.get_value())
         return (None, None)
 
     def run_command(self, token: CommandToken) -> None:
@@ -103,26 +113,3 @@ class CommandInterpreter:
             action(parameter)
         else:
             throw(INVALID_COMMAND)
-
-
-class ExpressionParser:
-
-    def evaluate(self, expr: str) -> bool:
-        left, right, op = self.tokenize_expr(expr)
-        if not all([left, right, op]):
-            return False
-        if Num.is_number(left) and Num.is_number(right):
-            return eval(f'{float(left)}{op}{float(right)}')
-        try:
-            return eval(f'"{left}"{op}"{right}"')
-        except Exception:
-            return False
-
-    def tokenize_expr(self, string: str) -> tuple[str, str, str]:
-        if not string:
-            return ('', '', '')
-        for op, regex in OPERATORS.items():
-            if match(regex, string):
-                left, right = string.split(op, 1)
-                return (left, right, op)
-        return ('', '', '')

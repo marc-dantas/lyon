@@ -7,14 +7,14 @@ By [@marc-dantas](https://github.com/marc-dantas)
 <h3 id="out">Example: Simple input-output</h3> 
 
 ```
-var name
-outln --- Welcome! ---
-outln What is your name?
+var "name"
+outln "--- Welcome! ---"
+out "What is your name? "
 readin
-val @SPACE
-loadvar name
-outln Hello, @SPACE!
-outln --- Bye! ---
+val "@SPACE"
+loadvar "name"
+outln "Hello, @SPACE!"
+outln "--- Bye! ---"
 ```
 </code></pre>
 
@@ -23,23 +23,23 @@ outln --- Bye! ---
 ### Example: Simple Adder
 
 ```
-outln --- Welcome! ---
-var n1
-outln First number: 
+outln "--- Welcome! ---"
+var "n1"
+out "First number: "
 readin 
-val @SPACE
-var n2
-outln Second number:
+val "@SPACE"
+var "n2"
+out "Second number: "
 readin
-val @SPACE
-var sum
-loadvar n1
+val "@SPACE"
+var "sum"
+loadvar "n1"
 sum @SPACE
-loadvar n2
+loadvar "n2"
 sum @SPACE
-val $NUM
-ldvar sum
-outln The sum is @SPACE
+val "@NUM"
+loadvar "sum"
+outln "The sum is @SPACE"
 ```
 
 <hr>
@@ -71,23 +71,23 @@ outln B = @SPACE
 
 main.lyon
 ```
-var guess
+var "guess"
 readin
-val @SPACE
-loadvar guess
-mwrite @SPACE=10
-runif guessed.lyon
-runelse not_guessed.lyon
+val "@SPACE"
+loadvar "guess"
+mwrite ""@SPACE"="10""
+runwhen "guessed.lyon"
+runelse "not_guessed.lyon"
 ```
 
 guessed.lyon
 ```
-outln You guessed it!
+outln "You guessed it!"
 ```
 
 not_guessed.lyon
 ```
-outln You did not guess it!
+outln "You did not guess it!"
 ```
 
 <hr>

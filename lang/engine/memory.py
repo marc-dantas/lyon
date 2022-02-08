@@ -34,25 +34,25 @@ class Num:
 
     @staticmethod
     def is_number(val: object) -> bool:
-        return val.replace('.', '', 1).isdigit()
+        return str(val).replace('.', '', 1).isdigit()
 
-    def check_number(self, val: object) -> float:
+    def check_number(self, val: object, cmd_name: str) -> float:
         if self.is_number(val):
             return float(val)
-        throw(INVALID_ARG)
+        throw(INVALID_ARG, cmd_name)
         return 0.0
 
     def add(self, val: float) -> None:
-        self._num += self.check_number(val)
+        self._num += self.check_number(val, 'add')
 
     def sub(self, val: float) -> None:
-        self._num -= self.check_number(val)
+        self._num -= self.check_number(val, 'sub')
 
     def mul(self, val: float) -> None:
-        self._num *= self.check_number(val)
+        self._num *= self.check_number(val, 'mul')
 
     def div(self, val: float) -> None:
-        self._num /= self.check_number(val)
+        self._num /= self.check_number(val, 'div')
 
     def clear(self) -> None:
         self._num = 0.0

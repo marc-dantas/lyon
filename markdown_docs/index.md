@@ -16,12 +16,13 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
     + `val <value>`
     + `loadvar <name>`
 - Math commands
+    + `clearnum`
     + `sum <number>`
     + `sub <number>`
     + `mul <number>`
     + `div <number>`
 - Flow Control
-    + `runif <file>`
+    + `runwhen <file>`
     + `runelse <file>`
     + `runwhile <file>`
 - File Commands
@@ -43,22 +44,19 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 
 <hr>
 
-### Error Codes
-- 0: Unknown error (Default Error)
-- 1: Invalid command (Unknown Command Error)
-- 2: File Error
-- 3: Invalid argument (Name Error)
-- 4: Variable Error or Variable not found
+### Data types
+- `String`: is a sequence of characters (text) and delimited by double quotes (`"`).
+- `Number`: represent a integer or a real number. (decimal cases separated by a dot (`.`))
 
 <hr>
 
 ### Memory
 - `@SPACE`: The space in the memory where the input and general values is stored.
-    + Representation: `@SPACE` -> example: `outln @SPACE` (prints the `@SPACE` value)
+    + Representation: `@SPACE` → example: `outln "@SPACE"` (prints the `@SPACE` value)
     + NOTE: The default value is "None"
 <br><br>
 - `@NUM`: The space in the memory where the numbers are stored.
-    + Representation: `@NUM` -> example: `outln @NUM` (prints the `@NUM` value)
+    + Representation: `@NUM` → example: `outln "@NUM"` (prints the `@NUM` value)
     + NOTE: The default value is 0.
 
 <hr>
@@ -69,15 +67,15 @@ lyon has a different way of interpreting files and folders, like folders being p
 <hr>
 
 ### Using Lyon
-- To start the lyon interactive shell, type `lyon -s` or `lyon --shell`
+- To start Lyon's interactive shell, type `lyon -s`, `lyon --shell` or don't enter any parameters.
 #### Lyon Management
-Lyon has a program that manages lyon programs (like a NPM).
+Lyon has a program that manages lyon programs
 ##### Usage
 - To use the management mode, use `lyon -m <command>` or `lyon --manage <command>`
     + Commands
-        + `new <name>` - Creates a new lyon program
-        + `run <program_path>` - Runs a lyon program
-        + `rundebug <program_path>` - Runs a lyon program with debug messages.
+        + `new <name>` → Creates a new lyon program
+        + `run <program_path>` → Runs a lyon program
+        + `rundebug <program_path>` → Runs a lyon program with debug messages.
     + Program Structure (Tree)
       + [program name] (folder [program])
         + src (folder)
@@ -89,11 +87,18 @@ Lyon has a program that manages lyon programs (like a NPM).
 <hr>
 
 ### Lyon Versions
-Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate that it is an unreleased version, `FINAL` to indicate that it is a released version, and `OTHER` to indicate that it is just an idea or modified version.
+Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate that it is an unreleased version, `RELEASE` to indicate that it is a released version, and `OTHER` to indicate that it is just an idea or modified version.
 
 <hr>
 
 ### Condition Expressions
+- All operators:
+    + `=` → Compares the equality.
+    + `!=` → Compares the inequality.
+    + `>` → Compares the "greater than" (for strings the string length is compared).
+    + `<` → Compares the "less than" (for strings the string length is compared)
+    + `<=` → Compares the "less than" OR equality (for strings, the length of the string is compared)
+    + `>=` → Compares the "greater than" OR equality (for strings, the length of the string is compared)
 - Condition Expressions are used to check a test
 - To use this, use the `mwrite` command to write a expression
     + `mwrite @SPACE==None`
@@ -101,4 +106,3 @@ Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate th
         + `runif test.lyon`
         + `runelse falsetest.lyon`
         + `runwhile whiletest.lyon`
-- **_Attention_**: The expressions (for now) will consider spaces around the operator, such as `abc == abc` will return false, as the first value is "abc " and the second is " abc". But if you use `abc==abc` (no spaces around the operator) it will return true

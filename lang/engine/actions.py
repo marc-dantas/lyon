@@ -3,13 +3,11 @@ from .util import filter_interpolations, interpret, throw
 from .memory import Space, Num, Var
 from .errs import FILE_ERR
 from sys import exit
-from .core import (
-    Command,
-    CommandProcessor,
-    CommandInterpreter,
-    CommandTable,
-    ExpressionParser
-)
+from .core import (Command,
+                   CommandProcessor,
+                   CommandInterpreter,
+                   CommandTable)
+from .expr import ConditionalExpression
 
 # Memory
 SPACE = Space()
@@ -62,6 +60,10 @@ def ldvar(val: str) -> None:
     SPACE.set(VAR.get(val))
 
 
+def clearnum(val: str) -> None:
+    NUM.clear()
+
+
 def sum(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     NUM.add(val)
@@ -83,63 +85,59 @@ def div(val: str) -> None:
 
 
 def run(val: str) -> None:
-    val = filter_interpolations(val, SPACE, NUM)
     try:
-        with open(f'{val}') as f:
+        with open(f'{val}', encoding='utf-8') as f:
             cmds = f.read().split('\n')
             for cmd in cmds:
                 interpret(PROCESSOR, INTERPRETER, cmd)
     except Exception:
-        throw(FILE_ERR)
+        throw(FILE_ERR, 'run')
 
 
-def runif(val: str) -> None:
+def cmd_when(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
-    expr = ExpressionParser().evaluate(SPACE.value)
-    if expr:
+    if ConditionalExpression(SPACE.value).evaluate():
         run(val)
 
 
-def runelse(val: str) -> None:
+def cmd_else(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
-    expr = ExpressionParser().evaluate(SPACE.value)
-    if not expr:
+    if not ConditionalExpression(SPACE.value).evaluate():
         run(val)
 
 
-def runwhile(val: str) -> None:
+def cmd_while(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
-    expr = ExpressionParser().evaluate(SPACE.value)
+    expr = ConditionalExpression(SPACE.value).evaluate()
     while expr:
         run(val)
-        expr = ExpressionParser().evaluate(SPACE.value)
 
 
 def fread(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
-        with open(f'{val}', 'r') as f:
+        with open(f'{val}', 'r', encoding='utf-8') as f:
             SPACE.set(f.read())
     except Exception:
-        throw(FILE_ERR)
- 
+        throw(FILE_ERR, 'fread')
+
 
 def fwrite(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
-        with open(f'{val}', 'w') as f:
+        with open(f'{val}', 'w', encoding='utf-8') as f:
             f.write(SPACE.value)
     except Exception:
-        throw(FILE_ERR)
+        throw(FILE_ERR, 'fwrite')
 
 
 def fwriteln(val: str) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
-        with open(f'{val}', 'w') as f:
+        with open(f'{val}', 'w', encoding='utf-8') as f:
             f.write(SPACE.value + '\n')
     except Exception:
-        throw(FILE_ERR)
+        throw(FILE_ERR, 'fwriteln')
 
 
 def ext(val: str) -> None:
@@ -160,14 +158,15 @@ COMMANDS = [
     Command(name='val', action=val),
     Command(name='loadvar', action=ldvar),
     # Math Commands
+    Command(name='clearnum', action=clearnum),
     Command(name='sum', action=sum),
     Command(name='sub', action=sub),
     Command(name='mul', action=mul),
     Command(name='div', action=div),
     # Flow Control Commands
-    Command(name='runif', action=runif),
-    Command(name='runelse', action=runelse),
-    Command(name='runwhile', action=runwhile),
+    Command(name='runwhen', action=cmd_when),
+    Command(name='runelse', action=cmd_else),
+    Command(name='runwhile', action=cmd_while),
     # File commands
     Command(name='fread', action=fread),
     Command(name='fwrite', action=fwrite),

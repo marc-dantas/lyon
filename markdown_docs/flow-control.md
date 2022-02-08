@@ -5,7 +5,7 @@ By [@marc-dantas](https://github.com/marc-dantas)
 <hr>
 
 ### Commands
-- `runif <file>` [here](#runif)
+- `runwhen <file>` [here](#runif)
 - `runelse <file>` [here](#runelse)
 - `runwhile <file>` [here](#runwhile)
 
@@ -13,7 +13,7 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 <h3 id="runif">Command: <code>runif</code></h3> 
 
-- Run a file **if** the condition (stored in `@SPACE`) evaluates to true.
+- Run a file **when** the condition (stored in `@SPACE`) evaluates to true.
 - Syntax: `runif <file>`
 
 <hr>

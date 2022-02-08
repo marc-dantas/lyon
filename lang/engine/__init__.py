@@ -2,6 +2,6 @@
 Engine package
 This package contains the core engine of the language.
 """
-VERSION_CLS = 'DEV'
-VERSION_NUMBER = 1.3
-VERSION = f'Lyon {VERSION_NUMBER}: {VERSION_CLS}'
+VERSION_TAG = 'RELEASE'
+VERSION_NUMBER = 1.4
+VERSION = f'Lyon {VERSION_NUMBER}[/] [yellow]{VERSION_TAG}[/]'
