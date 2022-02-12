@@ -89,9 +89,9 @@ class CommandProcessor:
         cmd, param = (cmd_format if len(cmd_format) > 1
                       else (cmd_format[0], '"None"'))
         cmd = cmd.lower()
-        #if not match(Command.SYNTAX, command):
-        #    throw(INVALID_SYNTAX, cmd)
-        #    return CommandToken(cmd, String('" "'))
+        if not match(Command.SYNTAX, command):
+            throw(INVALID_SYNTAX, cmd)
+            return CommandToken(cmd, String('" "'))
         if Number.is_number(param):
             token = self.number_token(cmd, param)
         elif String.is_string(param):
