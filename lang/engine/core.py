@@ -84,11 +84,11 @@ class CommandProcessor:
         return CommandToken(command, Number(parameter))
         
     def tokenize_command(self, command: str) -> CommandToken:
-        token = None
         cmd_format = self.format_cmd(command).split(' ', 1)
         cmd, param = (cmd_format if len(cmd_format) > 1
                       else (cmd_format[0], '"None"'))
         cmd = cmd.lower()
+        token = CommandToken(cmd, String('" "'))
         if not match(Command.SYNTAX, command):
             throw(INVALID_SYNTAX, cmd)
             return CommandToken(cmd, String('" "'))

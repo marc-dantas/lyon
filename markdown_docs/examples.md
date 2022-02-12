@@ -34,9 +34,9 @@ readin
 val "@SPACE"
 var "sum"
 loadvar "n1"
-sum @SPACE
+sum "@SPACE"
 loadvar "n2"
-sum @SPACE
+sum "@SPACE"
 val "@NUM"
 loadvar "sum"
 outln "The sum is @SPACE"
@@ -48,21 +48,21 @@ outln "The sum is @SPACE"
 
 - main.lyon
 ```
-outln From main.lyon!
-var a
-val the value from a
-loadvar a
-outln A = @SPACE
-runfile other.lyon
+outln "From main.lyon!"
+var "a"
+val "the value from main"
+loadvar "a"
+outln "A = @SPACE"
+run "other.lyon"
 ```
 
 - other.lyon
 ```
-outln From other.lyon
-var b
-val the value from b
-loadvar b
-outln B = @SPACE
+outln "From other"
+var "b"
+val "the value from b"
+loadvar "b"
+outln "B = @SPACE"
 ```
 
 <hr>
@@ -92,4 +92,5 @@ outln "You did not guess it!"
 
 <hr>
 
-> NOTE: Have fun with lyon!
+> NOTE: Have fun with lyon!<br>
+> Goto the [docs](./index.md).

@@ -102,7 +102,7 @@ Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate th
 - Condition Expressions are used to check a test
 - To use this, use the `mwrite` command to write a expression
     + `mwrite @SPACE==None`
-    + & Checking with `runif`, `runelse` or `runwhile`
-        + `runif test.lyon`
+    + & Checking with `runwhen`, `runelse` or `runwhile`
+        + `runwhen test.lyon`
         + `runelse falsetest.lyon`
         + `runwhile whiletest.lyon`
