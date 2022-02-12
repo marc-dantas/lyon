@@ -1,6 +1,5 @@
-from typing import Callable
 from .util import throw
-from .errs import INVALID_ARG, INVALID_COMMAND
+from .errs import INVALID_ARG, INVALID_COMMAND, INVALID_SYNTAX
 from .data_models import *
 from re import match
 
@@ -13,7 +12,7 @@ class CommandToken:
         self._param = parameter or 'None'
 
     @property
-    def val(self) -> list[str | (String | Number)]:
+    def val(self) -> list[str, String | Number]:
         return [self._cmd, self._param]
 
     def __repr__(self) -> list:
@@ -21,8 +20,10 @@ class CommandToken:
 
 
 class Command:
+    
+    SYNTAX = r'.+'  # FIXME: Temporary
 
-    def __init__(self, name: str, action: Callable) -> None:
+    def __init__(self, name: str, action: 'function') -> None:
         self._name = name
         self._action = action
 
@@ -31,7 +32,7 @@ class Command:
         return self._name
 
     @property
-    def action(self) -> Callable:
+    def action(self) -> 'function':
         return self._action
 
     def __call__(self, argument) -> None:
@@ -102,14 +103,17 @@ class CommandInterpreter:
 
     def get_command(self, token: CommandToken) -> tuple:
         cmd, param = token.val
-        if self.command_table.exists(cmd):
-            cmd = self.command_table.get(cmd)
-            return (cmd.action, param.get_value())
-        return (None, None)
+        if match(Command.SYNTAX, cmd):
+            if self.command_table.exists(cmd):
+                cmd = self.command_table.get(cmd)
+                return (cmd.action, param.get_value())
+        else:
+            throw(INVALID_SYNTAX, f"\"{cmd}\"")
+        return (cmd, None)
 
     def run_command(self, token: CommandToken) -> None:
-        action, parameter = self.get_command(token)
-        if action is not None or parameter is not None:
-            action(parameter)
+        cmd, parameter = self.get_command(token)
+        if parameter is not None:
+            cmd(parameter)
         else:
-            throw(INVALID_COMMAND)
+            throw(INVALID_COMMAND, f"\"{cmd}\"")

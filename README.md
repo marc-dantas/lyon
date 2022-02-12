@@ -5,8 +5,8 @@ By [@marc-dantas](https://github.com/marc-dantas).
 
 - Read the [documentation](./markdown_docs/index.md).
 - See some [examples](./markdown_docs/examples.md).
-- Visit the [Lyon website](https://marc-dantas.github.io/lyon).
-- Goto the [credits](./CREDITS.md).
+- Visit the [Lyon website](https://marc-dantas.github.io/lyon)
+- Read the [credits](./CREDITS.md).
 
 
 ## What is Lyon? 🤔

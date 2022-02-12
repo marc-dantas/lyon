@@ -1,6 +1,6 @@
 from os import mkdir, chdir
 from json import dump, loads
-from engine.actions import run
+from engine.actions import cmd_run
 from shell import print_info, print_success
 
 # Constants
@@ -37,7 +37,7 @@ def run_program(path, debug=True) -> None:
             start_msg()
         chdir(path)
         chdir('src')
-        run(infos['main'])
+        cmd_run(infos['main'])
         if debug:
             end_msg()
     except Exception:

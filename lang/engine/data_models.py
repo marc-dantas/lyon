@@ -15,7 +15,7 @@ class String:
         return match(String.SYNTAX, val) is not None
     
     def get_value(self) -> str:
-        if m := match(self.SYNTAX, self._value):
+        if m := match(String.SYNTAX, self._value):
             return m.groups()[0]
         throw(ARG_SYNTAX_ERR, 'run (string parsing)')
         return ''
@@ -38,5 +38,5 @@ class Number:
         return self._value
     
     @staticmethod
-    def is_number(value: object) -> bool:
-        return value.replace('.', '', 1).isdigit()
+    def is_number(value: str) -> bool:
+        return match(Number.SYNTAX, value) is not None
