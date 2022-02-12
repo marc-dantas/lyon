@@ -21,7 +21,7 @@ class CommandToken:
 
 class Command:
     
-    SYNTAX = r'.+'  # FIXME: Temporary
+    SYNTAX = r'([a-zA-Z]+) ("(.+)"|[+-]?\d+(?:\.\d+)?)'
 
     def __init__(self, name: str, action: 'function') -> None:
         self._name = name
@@ -72,23 +72,32 @@ class CommandProcessor:
     @staticmethod
     def format_cmd(command: str) -> str:
         return command.strip()
+    
+    def string_token(self,
+                     command: str,
+                     parameter: str) -> CommandToken:
+        return CommandToken(command, String(parameter))
+    
+    def number_token(self,
+                     command: str,
+                     parameter: str) -> CommandToken:
+        return CommandToken(command, Number(parameter))
         
     def tokenize_command(self, command: str) -> CommandToken:
-        format = self.format_cmd(command).split(' ', 1)
-        if len(format) > 1:
-            cmd, param = format
-        else:
-            cmd = format[0]
-            param = '"None"'
-        cmd = cmd.lower()
         token = None
+        cmd_format = self.format_cmd(command).split(' ', 1)
+        cmd, param = (cmd_format if len(cmd_format) > 1
+                      else (cmd_format[0], '"None"'))
+        cmd = cmd.lower()
+        #if not match(Command.SYNTAX, command):
+        #    throw(INVALID_SYNTAX, cmd)
+        #    return CommandToken(cmd, String('" "'))
         if Number.is_number(param):
-            token = CommandToken(cmd, Number(param))
+            token = self.number_token(cmd, param)
         elif String.is_string(param):
-            token = CommandToken(cmd, String(param))
+            token = self.string_token(cmd, param)
         else:
-            throw(INVALID_ARG, '(command tokenization)')
-            return CommandToken(cmd, String('" "'))
+            throw(INVALID_ARG, command)
         return token
 
 
@@ -103,12 +112,9 @@ class CommandInterpreter:
 
     def get_command(self, token: CommandToken) -> tuple:
         cmd, param = token.val
-        if match(Command.SYNTAX, cmd):
-            if self.command_table.exists(cmd):
-                cmd = self.command_table.get(cmd)
-                return (cmd.action, param.get_value())
-        else:
-            throw(INVALID_SYNTAX, f"\"{cmd}\"")
+        if self.command_table.exists(cmd):
+            cmd = self.command_table.get(cmd)
+            return (cmd.action, param.get_value())
         return (cmd, None)
 
     def run_command(self, token: CommandToken) -> None:

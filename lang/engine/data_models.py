@@ -17,7 +17,7 @@ class String:
     def get_value(self) -> str:
         if m := match(String.SYNTAX, self._value):
             return m.groups()[0]
-        throw(ARG_SYNTAX_ERR, 'run (string parsing)')
+        throw(ARG_SYNTAX_ERR, '(string parsing)')
         return ''
     
     def __repr__(self) -> str:
