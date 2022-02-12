@@ -21,7 +21,7 @@ class CommandToken:
 
 class Command:
     
-    SYNTAX = r'([a-zA-Z]+) ("(.+)"|[+-]?\d+(?:\.\d+)?)'
+    SYNTAX = r'([a-zA-Z]+)(\s)?("(.+)"|[+-]?\d+(?:\.\d+)?)?'
 
     def __init__(self, name: str, action: 'function') -> None:
         self._name = name
