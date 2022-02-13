@@ -31,7 +31,7 @@ def mkch_dir(name) -> None:
 
 def run_program(path, debug=True) -> None:
     try:
-        with open(path + '\\lyon.json', 'r') as f:
+        with open(f'{path}\\lyon.json', 'r') as f:
             infos = loads(f.read())
         if debug:
             start_msg()
@@ -84,8 +84,10 @@ def create_program(name: str) -> None:
 def show_info(title: str) -> None:
     print_success(title)
     print_info('Usage:')
-    print_info('\t(lyon) --manage new <name>')
-    print_info('\t(lyon) --manage run <program_path>')
-    print_info('\t(lyon) --manage rundebug <program_path>')
-    print_info('\t(lyon) --shell')
+    print_info('\t(lyon) --manage | -m new <name>')
+    print_info('\t(lyon) --manage | -m run <program_path>')
+    print_info('\t(lyon) --manage | -m rundebug <program_path>')
+    print_info('\t(lyon) --shell | -s')
+    print_info('\t(lyon) --version | -v')
+    print_info('\t(lyon) --command | -c <command>')
     exit(1)

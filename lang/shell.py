@@ -5,13 +5,13 @@ CONSOLE = Console()
 
 
 def print_header(title, subtitle=None) -> None:
-    CONSOLE.print(f" [blue italic]{title}[/] ".center(50, '-'), style='green')
+    CONSOLE.print(f"[blue italic]{title}[/]", style='green')
     if subtitle:
-        CONSOLE.print(f" [blue bold]{subtitle}[/] ".center(48, '-'), style='green')
+        CONSOLE.print(f"[blue bold]{subtitle}[/]", style='green')
 
 
 def print_info(message):
-    CONSOLE.print(f'[blue bold]{message}[/] ')
+    CONSOLE.print(f'[yellow bold]{message}[/] ')
 
 
 def print_success(message):
@@ -19,7 +19,7 @@ def print_success(message):
 
 
 def print_hint(hint: str) -> None:
-    CONSOLE.print(f"  → [italic]{hint}[/]")
+    CONSOLE.print(f"  [blue]→[/] [italic]{hint}[/]")
 
 
 def get() -> str:

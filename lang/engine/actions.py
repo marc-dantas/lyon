@@ -1,4 +1,5 @@
 # Actions module for lyon
+from . import HELP
 from .util import filter_interpolations, interpret, throw
 from .memory import Space, Num, Var
 from .errs import FILE_ERR
@@ -7,7 +8,6 @@ from .core import (Command,
                    CommandProcessor,
                    CommandInterpreter,
                    CommandTable)
-from .expr import ConditionalExpression
 
 # Memory
 SPACE = Space()
@@ -21,72 +21,72 @@ INTERPRETER = CommandInterpreter(TABLE)
 
 
 # Main command actions (functions)
-def cmd_out(val: str) -> None:
+def cmd_out(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     print(val, end='')
 
 
-def cmd_outln(val: str) -> None:
+def cmd_outln(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     print(val)
 
 
-def cmd_readin(val: str) -> str:
+def cmd_readin(val: object) -> None:
     SPACE.set(input())
 
 
-def cmd_mclear(val: str) -> None:
+def cmd_mclear(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     SPACE.clear()
 
 
-def cmd_mwrite(val: str) -> None:
+def cmd_mwrite(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     SPACE.set(val)
 
 
-def cmd_var(val: str) -> None:
+def cmd_var(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     VAR.new(val)
 
 
-def cmd_val(val: str) -> None:
+def cmd_val(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     VAR.set(val)
 
 
-def cmd_ldvar(val: str) -> None:
+def cmd_ldvar(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     SPACE.set(VAR.get(val))
 
 
-def cmd_clearnum(val: str) -> None:
+def cmd_clearnum(val: object) -> None:
     NUM.clear()
 
 
-def cmd_sum(val: str) -> None:
+def cmd_sum(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     NUM.add(val)
 
 
-def cmd_sub(val: str) -> None:
+def cmd_sub(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     NUM.sub(val)
 
 
-def cmd_mul(val: str) -> None:
+def cmd_mul(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     NUM.mul(val)
 
 
-def cmd_div(val: str) -> None:
+def cmd_div(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     NUM.div(val)
 
 
-def cmd_run(val: str) -> None:
+def cmd_run(val: object) -> None:
     try:
-        with open(f'{val}', encoding='utf-8') as f:
+        with open(f'{val}', encoding='utf-16') as f:
             cmds = f.read().split('\n')
             for cmd in cmds:
                 interpret(PROCESSOR, INTERPRETER, cmd)
@@ -94,26 +94,22 @@ def cmd_run(val: str) -> None:
         throw(FILE_ERR, 'run')
 
 
-def cmd_when(val: str) -> None:
-    val = filter_interpolations(val, SPACE, NUM)
-    if ConditionalExpression(SPACE.value).evaluate():
+def cmd_when(val: object) -> None:
+    if (val := filter_interpolations(val, SPACE, NUM)):
         cmd_run(val)
 
 
-def cmd_else(val: str) -> None:
-    val = filter_interpolations(val, SPACE, NUM)
-    if not ConditionalExpression(SPACE.value).evaluate():
+def cmd_else(val: object) -> None:
+    if not (val := filter_interpolations(val, SPACE, NUM)):
         cmd_run(val)
 
 
-def cmd_while(val: str) -> None:
-    val = filter_interpolations(val, SPACE, NUM)
-    expr = ConditionalExpression(SPACE.value).evaluate()
-    while expr:
+def cmd_while(val: object) -> None:
+    while (val := filter_interpolations(val, SPACE, NUM)):
         cmd_run(val)
 
 
-def cmd_fread(val: str) -> None:
+def cmd_fread(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}', 'r', encoding='utf-8') as f:
@@ -122,7 +118,7 @@ def cmd_fread(val: str) -> None:
         throw(FILE_ERR, 'fread')
 
 
-def cmd_fwrite(val: str) -> None:
+def cmd_fwrite(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}', 'w', encoding='utf-8') as f:
@@ -131,7 +127,7 @@ def cmd_fwrite(val: str) -> None:
         throw(FILE_ERR, 'fwrite')
 
 
-def cmd_fwriteln(val: str) -> None:
+def cmd_fwriteln(val: object) -> None:
     val = filter_interpolations(val, SPACE, NUM)
     try:
         with open(f'{val}', 'w', encoding='utf-8') as f:
@@ -140,7 +136,11 @@ def cmd_fwriteln(val: str) -> None:
         throw(FILE_ERR, 'fwriteln')
 
 
-def cmd_ext(val: str) -> None:
+def cmd_hlp(val: object) -> None:
+    print(HELP)
+
+
+def cmd_ext(val: object) -> None:
     exit()
 
 
@@ -172,6 +172,7 @@ COMMANDS = [
     Command(name='fwrite', action=cmd_fwrite),
     Command(name='fwriteln', action=cmd_fwriteln),
     # Other commands
+    Command(name='hlp', action=cmd_hlp),
     Command(name='run', action=cmd_run),
     Command(name='ext', action=cmd_ext)
 ]

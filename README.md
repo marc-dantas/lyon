@@ -17,3 +17,8 @@ Lyon is a simple to use interpreted command language made for the purpose of tea
 - [x] A better data handling system
 - Arrays
 - Save "compiled" lyon files (`*.lyc` extension)
+
+
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas

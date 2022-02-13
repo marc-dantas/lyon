@@ -29,3 +29,6 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 - Reads a value from the console and stores it in `@SPACE` space in the memory.
 - Syntax: `readin`
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas

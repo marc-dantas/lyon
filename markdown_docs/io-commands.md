@@ -21,3 +21,6 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 - Writes a value to the `@SPACE` space in the memory.
 - Syntax: `write <value>`
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas

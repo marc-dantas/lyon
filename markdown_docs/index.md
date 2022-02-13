@@ -106,3 +106,6 @@ Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate th
         + `runwhen test.lyon`
         + `runelse falsetest.lyon`
         + `runwhile whiletest.lyon`
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas

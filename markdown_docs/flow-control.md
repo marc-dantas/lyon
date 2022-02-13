@@ -29,3 +29,6 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 - Run a file **while** the condition (stored in `@SPACE`) evaluates to true.
 - Syntax: `runwhile <file>`
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas

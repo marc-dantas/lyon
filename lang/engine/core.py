@@ -1,6 +1,6 @@
 from .util import throw
 from .errs import INVALID_ARG, INVALID_COMMAND, INVALID_SYNTAX
-from .data_models import *
+from .models import *
 from re import match
 
 
@@ -21,7 +21,7 @@ class CommandToken:
 
 class Command:
     
-    SYNTAX = r'([a-zA-Z]+)(\s)?("(.+)"|[+-]?\d+(?:\.\d+)?)?'
+    SYNTAX = rf'([a-zA-Z]+)(\s+)?({Number.SYNTAX}|{String.SYNTAX}|{Expr.SYNTAX})?'
 
     def __init__(self, name: str, action: 'function') -> None:
         self._name = name
@@ -82,7 +82,12 @@ class CommandProcessor:
                      command: str,
                      parameter: str) -> CommandToken:
         return CommandToken(command, Number(parameter))
-        
+    
+    def expr_token(self,
+                     command: str,
+                     parameter: str) -> CommandToken:
+        return CommandToken(command, Expr(parameter))
+    
     def tokenize_command(self, command: str) -> CommandToken:
         cmd_format = self.format_cmd(command).split(' ', 1)
         cmd, param = (cmd_format if len(cmd_format) > 1
@@ -96,6 +101,8 @@ class CommandProcessor:
             token = self.number_token(cmd, param)
         elif String.is_string(param):
             token = self.string_token(cmd, param)
+        elif Expr.is_expression(param):
+            token = self.expr_token(cmd, param)
         else:
             throw(INVALID_ARG, command)
         return token

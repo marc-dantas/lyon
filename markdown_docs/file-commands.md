@@ -29,3 +29,6 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 - Write the value stored in the `@SPACE` space in the memory to a file with a new line.
 - Syntax: `fwriteln <file>`
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas

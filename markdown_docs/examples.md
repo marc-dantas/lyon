@@ -94,3 +94,6 @@ outln "You did not guess it!"
 
 > NOTE: Have fun with lyon!<br>
 > Goto the [docs](./index.md).
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas

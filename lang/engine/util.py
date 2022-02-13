@@ -1,5 +1,6 @@
 from rich.console import Console
 
+
 interpolations = ['@NUM', '@SPACE']
 
 

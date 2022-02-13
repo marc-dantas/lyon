@@ -29,3 +29,6 @@ By [@marc-dantas](https://github.com/marc-dantas)
 
 - Loads a variable space in the memory and stores the value in `@SPACE` space in the memory.
 - Syntax: `loadvar <name>`
+
+> © 2022 - All rights reserved<br>
+> Made with ❤️ in Brazil by Marcio Dantas
