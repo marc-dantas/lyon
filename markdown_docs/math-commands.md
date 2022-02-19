@@ -46,5 +46,7 @@ By [@marc-dantas](https://github.com/marc-dantas)
 - Divide a value to the `@NUM` space in the memory.
 - Syntax: `div <number>`
 
+<hr>
+
 > © 2022 - All rights reserved<br>
 > Made with ❤️ in Brazil by Marcio Dantas

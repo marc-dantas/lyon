@@ -1,7 +1,18 @@
-from .util import throw
-from .errs import INVALID_ARG, INVALID_COMMAND, INVALID_SYNTAX
+from .util import filter_interpolations
 from .models import *
-from re import match
+from .memory import *
+from .errs import INVALID_COMMAND
+
+# Memory
+SPACE = Space()
+NUM = Num()
+VAR = Var()
+PARAM = Param()
+CMP = Cmp()
+
+# General constants
+INTERPOLATIONS = (SPACE, NUM, PARAM)
+TYPES = (String, Number)
 
 
 class CommandToken:
@@ -21,8 +32,6 @@ class CommandToken:
 
 class Command:
     
-    SYNTAX = rf'([a-zA-Z]+)(\s+)?({Number.SYNTAX}|{String.SYNTAX}|{Expr.SYNTAX})?'
-
     def __init__(self, name: str, action: 'function') -> None:
         self._name = name
         self._action = action
@@ -67,45 +76,24 @@ class CommandTable:
         return self._commands
 
 
-class CommandProcessor:
+class CommandLexer:
 
     @staticmethod
-    def format_cmd(command: str) -> str:
-        return command.strip()
+    def _format_cmd(command: str) -> tuple[str, str]:
+        f = command.strip().split(' ', 1)
+        return (f[0].lower(), f[-1]) if len(f) > 1 else (f[0], '"None"')
     
-    def string_token(self,
-                     command: str,
-                     parameter: str) -> CommandToken:
-        return CommandToken(command, String(parameter))
-    
-    def number_token(self,
-                     command: str,
-                     parameter: str) -> CommandToken:
-        return CommandToken(command, Number(parameter))
-    
-    def expr_token(self,
-                     command: str,
-                     parameter: str) -> CommandToken:
-        return CommandToken(command, Expr(parameter))
+    def _create_token(self, cmd_name: str, param: str) -> CommandToken:
+        for cls in TYPES:
+            if cls.match_syntax(param):
+                return CommandToken(cmd_name, cls(param))
+        throw(INVALID_ARG, cmd_name, 'Invalid type literal.')
+        return CommandToken(cmd_name, String('""'))
     
     def tokenize_command(self, command: str) -> CommandToken:
-        cmd_format = self.format_cmd(command).split(' ', 1)
-        cmd, param = (cmd_format if len(cmd_format) > 1
-                      else (cmd_format[0], '"None"'))
-        cmd = cmd.lower()
-        token = CommandToken(cmd, String('" "'))
-        if not match(Command.SYNTAX, command):
-            throw(INVALID_SYNTAX, cmd)
-            return CommandToken(cmd, String('" "'))
-        if Number.is_number(param):
-            token = self.number_token(cmd, param)
-        elif String.is_string(param):
-            token = self.string_token(cmd, param)
-        elif Expr.is_expression(param):
-            token = self.expr_token(cmd, param)
-        else:
-            throw(INVALID_ARG, command)
-        return token
+        cmd_name, param = self._format_cmd(command)
+        param = filter_interpolations(param, *INTERPOLATIONS)
+        return self._create_token(cmd_name, param)
 
 
 class CommandInterpreter:

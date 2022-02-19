@@ -9,28 +9,36 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
     + `outln <value>`
     + `readin`
 - IO Commands
-    + `mclear`
-    + `mwrite <value>`
+    + `mem_clear`
+    + `mem_write <value>`
 - Variable commands
+    + `clear_var`
     + `var <name>`
     + `val <value>`
-    + `loadvar <name>`
+    + `load_var <name>`
 - Math commands
-    + `clearnum`
+    + `clear_num`
     + `sum <number>`
     + `sub <number>`
     + `mul <number>`
     + `div <number>`
-- Flow Control
-    + `runwhen <file>`
-    + `runelse <file>`
-    + `runwhile <file>`
+- Comparison & Flow control Commands
+    + `call_ge <file>`
+    + `call_le <file>`
+    + `call_gt <file>`
+    + `call_lt <file>`
+    + `call_ne <file>`
+    + `call_eq <file>`
+    + `cmp <value>`
+    + `clear_cmp`
 - File Commands
-    + `fread <file>`
-    + `fwrite <file>`
-    + `fwriteln <file>`
+    + `file_read <file>`
+    + `file_write <file>`
 - Other commands
-    + `run <file>` - Runs a file
+    + `hlp`
+    + `call <file>` - Call a function (file with `*.lyon` extension)
+    + `param_call <file>` - Call a function (file with `*.lyon` extension) with a parameter (`@SPACE` value)
+    + `typeof <value>` - Prints out the type of the value.
     + `ext` - Exit lyon
 
 <br>
@@ -39,7 +47,7 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - [IO Commands](./io-commands.md)
 - [Variable commands](./variable-commands.md)
 - [Math commands](./math-commands.md)
-- [Flow Control](./flow-control.md)
+- [Comparison & Flow control commands](./comparison-flow-control.md)
 - [File Commands](./file-commands.md)
 
 <hr>
@@ -48,16 +56,30 @@ By [@marc-dantas](https://gitub.com/marc-dantas)
 - `String`: is a sequence of characters (text) and delimited by double quotes (`"`).
 - `Number`: represent a integer or a real number. (decimal cases separated by a dot (`.`))
 
+> ***EXERCISE***: Try to use the "typeof" command (`typeof <value>`) and see the data types from diferent literals.
+
 <hr>
 
 ### Memory
-- `@SPACE`: The space in the memory where the input and general values is stored.
-    + Representation: `@SPACE` → example: `outln "@SPACE"` (prints the `@SPACE` value)
-    + NOTE: The default value is "None"
-<br><br>
-- `@NUM`: The space in the memory where the numbers are stored.
-    + Representation: `@NUM` → example: `outln "@NUM"` (prints the `@NUM` value)
-    + NOTE: The default value is 0.
+#### `@SPACE`: The space in the memory where the input and general values is stored.
+- Representation: `@SPACE`
+  +  Example: `setcmp "@SPACE"`
+- NOTE: The default value is "None"
+
+#### `@NUM`: The space in the memory where the numbers are stored.
+- Representation: `@NUM`
+    + Example: `val "@NUM"`
+- NOTE: The default value is 0.
+
+#### `@PARAM`: The space in the memory where the function parameters are stored.
+- Representation: `@PARAM` 
+    + Example: `sum "@PARAM"` 
+- NOTE: The default value is "None".
+
+#### `@CMP`: The space in the memory where the conditional comparisons are stored.
+- NOTE: `@CMP` doesn't have a literal representation, then can't be accessed.
+
+> ***NOTE4DEVS***: The "at" sign (@) is a convention to memory objects.
 
 <hr>
 
@@ -70,18 +92,19 @@ lyon has a different way of interpreting files and folders, like folders being p
 - To start Lyon's interactive shell, type `lyon -s`, `lyon --shell` or don't enter any parameters.
 #### Lyon Management
 Lyon has a program that manages lyon programs
-##### Usage
 - To use the management mode, use `lyon -m <command>` or `lyon --manage <command>`
     + Commands
         + `new <name>` → Creates a new lyon program
         + `run <program_path>` → Runs a lyon program
         + `rundebug <program_path>` → Runs a lyon program with debug messages.
     + Program Structure (Tree)
-      + [program name] (folder [program])
-        + src (folder)
-          + main.lyon (file [function])
-          + ... (files)
-      + lyon.json (file)
+    ```
+    [program name] (folder [program])
+        > src (folder)
+          >> main.lyon (file [function])
+          >> ... (files)
+        > lyon.json (file)
+    ```
 - To run a single command, type `lyon -c <value>` or `lyon --command <value>`.
 
 <hr>
@@ -90,22 +113,6 @@ Lyon has a program that manages lyon programs
 Lyon versions start at 1.0. There are three "version tags": `DEV` to indicate that it is an unreleased version, `RELEASE` to indicate that it is a released version, and `OTHER` to indicate that it is just an idea or modified version.
 
 <hr>
-
-### Condition Expressions
-- All operators:
-    + `=` → Compares the equality.
-    + `!=` → Compares the inequality.
-    + `>` → Compares the "greater than" (for strings the string length is compared).
-    + `<` → Compares the "less than" (for strings the string length is compared)
-    + `<=` → Compares the "less than" OR equality (for strings, the length of the string is compared)
-    + `>=` → Compares the "greater than" OR equality (for strings, the length of the string is compared)
-- Condition Expressions are used to check a test
-- To use this, use the `mwrite` command to write a expression
-    + `mwrite @SPACE==None`
-    + & Checking with `runwhen`, `runelse` or `runwhile`
-        + `runwhen test.lyon`
-        + `runelse falsetest.lyon`
-        + `runwhile whiletest.lyon`
 
 > © 2022 - All rights reserved<br>
 > Made with ❤️ in Brazil by Marcio Dantas

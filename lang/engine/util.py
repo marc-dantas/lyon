@@ -1,13 +1,10 @@
 from rich.console import Console
 
 
-interpolations = ['@NUM', '@SPACE']
-
-
-def interpret(processor, interpreter, command: str) -> bool:
+def interpret(lexer, interpreter, command: str) -> bool:
     if not command.strip():
         return False
-    token = processor.tokenize_command(command)
+    token = lexer.tokenize_command(command)
     interpreter.run_command(token)
     return True
 
@@ -24,13 +21,13 @@ def filter_interpolations(base: str, *args) -> str:
     return base
 
 
-def throw(value: object, at: str = '') -> None:
+def throw(value: object, at: str = '', message = '') -> None:
     """Throw an error
 
     Args:
         value (object): The error code or error message
     """
     if not at:
-        Console().print(f'[red]ERROR: [italic bold]{value}[/][/]')
+        Console().print(f'[red]ERROR: [italic bold]{value}[/]. {message} [/]')
     else:
-        Console().print(f'[red]ERROR → [yellow bold]{at}[/]: [italic bold]{value}[/][/]')
+        Console().print(f'[red]ERROR → [yellow bold]{at}[/]: [italic bold]{value}[/]. {message} [/]')

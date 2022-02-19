@@ -1,10 +1,10 @@
 from os import mkdir, chdir
 from json import dump, loads
-from engine.actions import cmd_run
+from engine.actions import cmd_call
 from shell import print_info, print_success
 
 # Constants
-CODE = 'outln Hello World!\n'
+CODE = 'outln "Hello World!"\n'
 
 # Infos
 infos = {
@@ -37,7 +37,7 @@ def run_program(path, debug=True) -> None:
             start_msg()
         chdir(path)
         chdir('src')
-        cmd_run(infos['main'])
+        cmd_call(infos['main'])
         if debug:
             end_msg()
     except Exception:

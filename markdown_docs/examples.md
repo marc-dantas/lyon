@@ -12,7 +12,7 @@ outln "--- Welcome! ---"
 out "What is your name? "
 readin
 val "@SPACE"
-loadvar "name"
+load_var "name"
 outln "Hello, @SPACE!"
 outln "--- Bye! ---"
 ```
@@ -22,6 +22,7 @@ outln "--- Bye! ---"
 
 ### Example: Simple Adder
 
+adder.lyon
 ```
 outln "--- Welcome! ---"
 var "n1"
@@ -33,12 +34,12 @@ out "Second number: "
 readin
 val "@SPACE"
 var "sum"
-loadvar "n1"
+load_var "n1"
 sum "@SPACE"
-loadvar "n2"
+load_var "n2"
 sum "@SPACE"
 val "@NUM"
-loadvar "sum"
+load_var "sum"
 outln "The sum is @SPACE"
 ```
 
@@ -46,22 +47,22 @@ outln "The sum is @SPACE"
 
 ### Example: Running files
 
-- main.lyon
+main.lyon
 ```
 outln "From main.lyon!"
 var "a"
-val "the value from main"
-loadvar "a"
+val "The value from main"
+load_var "a"
 outln "A = @SPACE"
-run "other.lyon"
+call "other.lyon"
 ```
 
-- other.lyon
+other.lyon
 ```
-outln "From other"
+outln "From other.lyon!"
 var "b"
-val "the value from b"
-loadvar "b"
+val "The value from b"
+load_var "b"
 outln "B = @SPACE"
 ```
 
@@ -74,20 +75,33 @@ main.lyon
 var "guess"
 readin
 val "@SPACE"
-loadvar "guess"
-mwrite ""@SPACE"="10""
-runwhen "guessed.lyon"
-runelse "not_guessed.lyon"
+load_var "guess"
+cmp "@SPACE"
+cmp "10"
+call_eq "guessed.lyon"
+outln "You did not guess it!"
 ```
 
 guessed.lyon
 ```
 outln "You guessed it!"
+ext
 ```
 
-not_guessed.lyon
+<hr>
+
+### Example: Using function parameters
+
+main.lyon
 ```
-outln "You did not guess it!"
+outln "From main.lyon function"
+mem_write "Param val from main.lyon"
+param_call "other.lyon"
+```
+
+other.lyon
+```
+outln "From other.lyon function"
 ```
 
 <hr>

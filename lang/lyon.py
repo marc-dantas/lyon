@@ -1,5 +1,5 @@
 from manager import *
-from engine.actions import PROCESSOR, INTERPRETER
+from engine.actions import LEXER, INTERPRETER
 from sys import argv
 from engine import util, VERSION
 import shell
@@ -29,29 +29,25 @@ def manage():
 def start_shell() -> None:
     shell.print_header(f'Lyon {VERSION} <https://marc-dantas.github.io/lyon/>', 'Interactive SHELL')
     shell.print_hint('Type "ext" to [bold]exit[/]')
-    shell.print_hint('Type "run <filename>" to [bold]run[/] a file (function)')
+    shell.print_hint('Type "call <file>" to [bold]call[/] a function (file)')
     shell.print_hint('Type "hlp" to [bold]show the help[/]')
     shell.print_hint('See docs at <https://github.com/marc-dantas/lyon/blob/master/docs/index.md>')
     shell.print_info('Copyright (c) 2022 - @marc-dantas.')
     shell.print_info('Licensed under the MIT License.')
     while True:
         cmd = shell.get()
-        res = util.interpret(PROCESSOR, INTERPRETER, cmd)
+        res = util.interpret(LEXER, INTERPRETER, cmd)
         if not res:
             continue
 
 def start_simple_shell():
     while True:
         cmd = shell.get()
-        res = util.interpret(PROCESSOR, INTERPRETER, cmd)
-        if not res:
-            continue
+        util.interpret(LEXER, INTERPRETER, cmd)
 
 
 def run_cmd(cmd: str) -> None:
-    res = util.interpret(PROCESSOR, INTERPRETER, cmd)
-    if not res:
-        return
+    util.interpret(LEXER, INTERPRETER, cmd)
 
 
 def main():
