@@ -90,6 +90,7 @@ lyon has a different way of interpreting files and folders, like folders being p
 
 ### Using Lyon
 - To start Lyon's interactive shell, type `lyon -s`, `lyon --shell` or don't enter any parameters.
+- To Start Lyon's **simple** interactive shell, type `lyon -ss` or `lyon --simple-shell`
 #### Lyon Management
 Lyon has a program that manages lyon programs
 - To use the management mode, use `lyon -m <command>` or `lyon --manage <command>`

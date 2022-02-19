@@ -18,8 +18,9 @@ Lyon is a simple interpreted command language made for the purpose of **teaching
 <hr>
 
 ## Lyon features for the next versions
-- [x] Can pass more than one parameter in functions.
-- [x] A better data handling system.
+- [ ] Can pass more than one parameter in commands.
+- [ ] use the _**dollar** literals_ to variables (like `outln "$var1"` or `outln "The value is $val"`)
+- [ ] Can create modules in Lyon
 - [ ] Implement a more "low-level"-like logic.
 
 <hr>
