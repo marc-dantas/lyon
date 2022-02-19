@@ -76,6 +76,7 @@ class CommandTable:
         return self._commands
 
 
+# TODO: Implement "Can use more than one parameter in commands."
 class CommandLexer:
 
     @staticmethod
@@ -96,6 +97,7 @@ class CommandLexer:
         return self._create_token(cmd_name, param)
 
 
+# TODO: Implement "Can use more than one parameter in commands."
 class CommandInterpreter:
 
     def __init__(self, command_table: CommandTable) -> None:
@@ -105,7 +107,7 @@ class CommandInterpreter:
     def command_table(self) -> CommandTable:
         return self._command_table
 
-    def get_command(self, token: CommandToken) -> tuple:
+    def _get_command(self, token: CommandToken) -> tuple:
         cmd, param = token.val
         if self.command_table.exists(cmd):
             cmd = self.command_table.get(cmd)
@@ -113,7 +115,7 @@ class CommandInterpreter:
         return (cmd, None)
 
     def run_command(self, token: CommandToken) -> None:
-        cmd, parameter = self.get_command(token)
+        cmd, parameter = self._get_command(token)
         if parameter is not None:
             cmd(parameter)
         else:

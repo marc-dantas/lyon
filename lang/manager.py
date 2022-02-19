@@ -10,18 +10,18 @@ CODE = 'outln "Hello World!"\n'
 infos = {
     'name': None,
     'version': None,
-    'main': 'main.lyon',
+    'main': 'src/main.lyon',
     'description': None,
     'author': None
 }
 
 
 def start_msg() -> None:
-    print_info('LyonManager: Running...')
+    print_info('Lyon: Running...')
     
 
 def end_msg() -> None:
-    print_info('LyonManager: Finished!')
+    print_info('Lyon: Finished!')
 
 
 def mkch_dir(name) -> None:
@@ -36,7 +36,6 @@ def run_program(path, debug=True) -> None:
         if debug:
             start_msg()
         chdir(path)
-        chdir('src')
         cmd_call(infos['main'])
         if debug:
             end_msg()
@@ -56,10 +55,11 @@ def create_main_dir(name: str) -> None:
         show_info('Lyon: [red]Could not create the program.[/]')
 
 
-def create_main_fn() -> None:
+def create_main_fn(default_code=True) -> None:
     mkch_dir('src')
     with open('main.lyon', 'w') as file:
-        file.write(CODE)
+        if default_code:
+            file.write(CODE)
     chdir('..')
 
 
@@ -71,12 +71,15 @@ def create_json() -> None:
 def create_program(name: str) -> None:
     print_info(f'Lyon: [green]Creating program "{name}"[/]')
     infos['name'] = name
-    infos['version'] = input('Version (default 1.0): ') or '1.0'
-    infos['description'] = input(f'Description (default "{name}"): ') or name
-    infos['author'] = input('Author (default "Unknown"): ') or 'Unknown'
+    infos['version'] = input('Version (default 1.0): ').strip() or '1.0'
+    infos['description'] = input(f'Description (default "{name}"): ').strip() or name
+    infos['author'] = input('Author (default "Unknown"): ').strip() or 'Unknown'
+    default_code = input('Start with default code? (Y/n) ').strip().lower() or 'y'
     print_success(f'Lyon: Starting to create "{name}"')
     action_message(lambda: create_main_dir(name), 'Creating main directory')
-    action_message(create_main_fn, 'Creating main function')
+    action_message(
+        lambda: create_main_fn(1 if default_code == 'y' else 0),
+        'Creating main function')
     action_message(create_json, 'Creating json file')
     print_success(f'Program "{name}" created!')
 
